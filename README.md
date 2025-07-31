@@ -43,17 +43,20 @@ Clona o descarga este repositorio en la carpeta `Assets` de tu proyecto Unity.
 1.  Selecciona tu ScriptableObject `LanguageManager` en la ventana del Proyecto.
 2.  Arrastra y suelta tus ScriptableObjects `Language` en el array "Languages".
 3.  Establece el `Default Language` al idioma que quieras cargar inicialmente.
-4.  ![Config LanguagueManager](Assets/img/Tutorial1_3.jpg)
+
+     ![Config LanguagueManager](Assets/img/Tutorial1_3.jpg)
 
 #### 3. Añade Traducciones a Cada Idioma
 
 1.  Selecciona un ScriptableObject `Language` (por ejemplo, "Spanish").
-2.  En el Inspector, expande los arrays "Text Translations" y "Audio Translations".
+2.  En el Inspector, expande los arrays "Words" y "Audios".
 3.  **Fundamentalmente, asegúrate de que el índice para un texto/audio específico coincida en todos los idiomas.**
     * Ej: `Text Translations[0]` = "Hola Mundo" (Español)
     * `Text Translations[0]` = "Hello World" (Inglés)
     * `Audio Translations[0]` = `audio_hola_espanol.mp3`
     * `Audio Translations[0]` = `audio_hello_english.mp3`
+  
+    ![Config LanguagueManager](Assets/img/Tutorial1_4.jpg)
 
 #### 4. Usando en Tu Escena
 
