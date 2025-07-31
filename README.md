@@ -113,7 +113,7 @@ Puedes cambiar el idioma actual llamando a un método en tu `LanguageManager`.
 
 ```csharp
 // Fragemto del codigo de LanguaManager que cambia el lenguaje
-    public void SetLanguage(int languageType)
+    public void SetLanguage(int languageType) // Tener en cuenta de respetar el orden del enum LanguageType, al usar este metodo
     {
 
         _languageType = (LanguageType)languageType;
