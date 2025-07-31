@@ -43,6 +43,7 @@ Clona o descarga este repositorio en la carpeta `Assets` de tu proyecto Unity.
 1.  Selecciona tu ScriptableObject `LanguageManager` en la ventana del Proyecto.
 2.  Arrastra y suelta tus ScriptableObjects `Language` en el array "Languages".
 3.  Establece el `Default Language` al idioma que quieras cargar inicialmente.
+4.  ![Config LanguagueManager](Assets/img/Tutorial1_3.jpg)
 
 #### 3. Añade Traducciones a Cada Idioma
 
