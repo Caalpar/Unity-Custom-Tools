@@ -35,6 +35,7 @@ Clona o descarga este repositorio en la carpeta `Assets` de tu proyecto Unity.
   ![Create LanguagueManager](Assets/img/Tutorial1_1.jpg)
 #### Create Languague:
   ![Create Languague](Assets/img/Tutorial1_2.jpg)
+  
   (Crea uno para cada idioma que quieras soportar, por ejemplo, "English", "Spanish", "French").
 
 #### 2. Configura tu Language Manager
