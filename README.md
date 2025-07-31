@@ -61,31 +61,12 @@ Clona o descarga este repositorio en la carpeta `Assets` de tu proyecto Unity.
 #### 4. Usando en Tu Escena
 
 * **Para Texto:**
-    1.  Añade un componente `LocalizedText` a tu GameObject `TextMeshProUGUI` o `UI.Text`.
+    1.  Añade un componente `SetText` a tu GameObject `TextMeshProUGUI` o `UI.Text`.
     2.  Asigna el índice de texto deseado de tus ScriptableObjects `Language`.
-    * _Ejemplo de fragmento de código para mostrar cómo podría verse/funcionar el componente `LocalizedText`._
-        ```csharp
-        // Ejemplo: En algún lugar de tu código cuando necesites actualizar texto
-        public class MyLocalizedText : MonoBehaviour
-        {
-            [SerializeField] private int textIndex; // El índice para este texto específico
-            private TextMeshProUGUI tmpro;
+    3.  Asigna el  `LanguageManager` que quieres usar.
+    4.  Asigna la referencia de tu `TextMeshProUGUI` o `UI.Text`.
 
-            void Awake()
-            {
-                tmpro = GetComponent<TextMeshProUGUI>();
-                // Esto es un ejemplo simplificado. Tu sistema real probablemente
-                // escuchará un evento del LanguageManager para cambios de idioma.
-                UpdateText();
-            }
-
-            // Llama a esto cuando el idioma cambie
-            public void UpdateText()
-            {
-                tmpro.text = LanguageManager.Instance.GetCurrentText(textIndex);
-            }
-        }
-        ```
+    ![Config LanguagueText](Assets/img/Tutorial1_5.jpg)
 
 * **Para Audio:**
     1.  Añade un componente `LocalizedAudioSource` a un GameObject con un `AudioSource`.
