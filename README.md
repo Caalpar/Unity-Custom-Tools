@@ -69,25 +69,39 @@ Clona o descarga este repositorio en la carpeta `Assets` de tu proyecto Unity.
     ![Config LanguagueText](Assets/img/Tutorial1_5.jpg)
 
 * **Para Audio:**
-    1.  Añade un componente `LocalizedAudioSource` a un GameObject con un `AudioSource`.
-    2.  Asigna el índice de audio deseado.
-    * _Ejemplo de fragmento de código para audio._
+    1.  Añade el prefab `PlayAudio` a tu escena.
+    2.  Anade el `LanguageManager` que quieres usar.
+    3.  Llama a la funcion Play e indicale en que indece esta el audio que quieres.
         ```csharp
-        // Ejemplo: En algún lugar de tu código cuando necesites reproducir audio
-        public class MyLocalizedAudioPlayer : MonoBehaviour
+        // Codigo de PlayAudio
+        public class PlayAudio : MonoBehaviour
         {
-            [SerializeField] private int audioIndex; // El índice para este audio específico
-            private AudioSource audioSource;
+            [SerializeField] LanguageManager languageManager;
+            AudioSource audioSource;
 
-            void Awake()
+            // Start is called before the first frame update
+            void Start()
             {
-                audioSource = GetComponent<AudioSource>();
+                if (audioSource == null)
+                {
+                    audioSource = gameObject.AddComponent<AudioSource>();
+                    audioSource.loop = false;
+                    audioSource.playOnAwake = false;
+                }
             }
 
-            public void PlayLocalizedClip()
+
+            public void Play(int index)
             {
-                audioSource.clip = LanguageManager.Instance.GetCurrentAudioClip(audioIndex);
-                audioSource.Play();
+                if(audioSource.isPlaying)
+                    audioSource.Pause();
+                    AudioClip clip = languageManager.GetAudio(index);
+                if (clip != null)
+                {
+                    audioSource.clip = clip;
+                    audioSource.Play();
+                }
+        
             }
         }
         ```
