@@ -72,6 +72,7 @@ Clona o descarga este repositorio en la carpeta `Assets` de tu proyecto Unity.
     1.  Añade el prefab `PlayAudio` a tu escena.
     2.  Anade el `LanguageManager` que quieres usar.
     3.  Llama a la funcion Play e indicale en que indece esta el audio que quieres.
+       
         ```csharp
         // Codigo de PlayAudio
         public class PlayAudio : MonoBehaviour
@@ -111,13 +112,49 @@ Clona o descarga este repositorio en la carpeta `Assets` de tu proyecto Unity.
 Puedes cambiar el idioma actual llamando a un método en tu `LanguageManager`.
 
 ```csharp
-// Ejemplo: Desde un clic de botón de UI o lógica del juego
-public void ChangeLanguageToEnglish()
-{
-    LanguageManager.Instance.SetLanguage("English"); // O por índice si se prefiere
-}
+// Fragemto del codigo de LanguaManager que cambia el lenguaje
+    public void SetLanguage(int languageType)
+    {
 
-public void ChangeLanguageToSpanish()
-{
-    LanguageManager.Instance.SetLanguage("Spanish");
-}
+        _languageType = (LanguageType)languageType;
+
+        if (UpdateText != null)
+        {
+            UpdateText.Invoke();
+        }
+
+    }
+
+    public void SetLanguage(LanguageType languageType)
+    {
+
+        _languageType = languageType;
+
+        if (UpdateText != null)
+        {
+            UpdateText.Invoke();
+        }
+
+    }
+```
+
+#### 6. Agregar idioma
+
+1. agregar un idioma abriendo el enm `LanguageType` y agregarlo.
+
+```csharp
+    public enum LanguageType
+    {
+        Ingles,
+        Espanol,
+        Portugues,
+        Frances,
+        Arab
+    }
+```
+
+2. Crea un ScriptableObject `Language` (por ejemplo, "Arab").
+3. Agrega los textos y auidos que corresponden a ese idioma
+4. Agregalo a tu `LanguageManager` y listo.
+
+
