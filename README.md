@@ -31,8 +31,11 @@ Clona o descarga este repositorio en la carpeta `Assets` de tu proyecto Unity.
 
 #### 1. Crea tus Activos de Idioma
 
-* Clic derecho en tu ventana de Proyecto: (Unity-Custom-Tools/Assets/img/Tutorial1_1.jpg)
-* Clic derecho en tu ventana de Proyecto: (Unity-Custom-Tools/Assets/img/Tutorial1_2.jpg) (Crea uno para cada idioma que quieras soportar, por ejemplo, "English", "Spanish", "French").
+* Clic derecho en tu ventana de Proyecto:
+  ![Create LanguagueManager](Unity-Custom-Tools/Assets/img/Tutorial1_1.jpg)
+* Clic derecho en tu ventana de Proyecto:
+  ![Create Languague](Unity-Custom-Tools/Assets/img/Tutorial1_2.jpg)
+  (Crea uno para cada idioma que quieras soportar, por ejemplo, "English", "Spanish", "French").
 
 #### 2. Configura tu Language Manager
 
