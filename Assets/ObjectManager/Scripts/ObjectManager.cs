@@ -21,6 +21,8 @@ public class ObjectManager : MonoBehaviour
         listObjects[index].SetActive(true);
     }
 
+
+
     public void Active(int index)
     {
         if (index < 0) return;
@@ -45,6 +47,26 @@ public class ObjectManager : MonoBehaviour
 
         listObjects[index].SetActive(false);
     }
+
+    public void Toggle(int index)
+    {
+        if (index < 0) return;
+        if (index >= listObjects.Length) return;
+
+        listObjects[index].SetActive(!listObjects[index].activeSelf);
+    }
+
+
+
+    public void Toggle(Enum value)
+    {
+        int index = Convert.ToInt32(value);
+        if (index < 0) return;
+        if (index >= listObjects.Length) return;
+
+        listObjects[index].SetActive(!listObjects[index].activeSelf);
+    }
+
 
     public GameObject this[int index]
     {
@@ -81,4 +103,6 @@ public class ObjectManager : MonoBehaviour
 
         EnumCreator.CrearEnum("ITEM_" + ItemName, listObjects, pathFolder);
     }
+
+
 }
