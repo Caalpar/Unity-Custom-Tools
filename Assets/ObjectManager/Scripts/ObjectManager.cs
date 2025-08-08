@@ -70,19 +70,15 @@ public class ObjectManager : MonoBehaviour
 
     public GameObject this[int index]
     {
-
         get
         {
-
             if (index < 0 || index >= listObjects.Length) return null;
             return listObjects[index];
-
         }
     }
 
     public GameObject this[Enum valor]
     {
-
         get
         {
             int index = Convert.ToInt32(valor);
@@ -91,6 +87,17 @@ public class ObjectManager : MonoBehaviour
 
         }
     }
+
+    public T GetComponentFrom<T>(Enum valor)
+    {
+       return this[valor].GetComponent<T>();
+    }
+
+    public T GetComponentFrom<T>(int valor)
+    {
+        return this[valor].GetComponent<T>();
+    }
+
 
     public void CrearEnumDesdeObjetos()
     {
