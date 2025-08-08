@@ -11,7 +11,7 @@ public class ObjectManagerEditor : Editor
 
         ObjectManager manager = (ObjectManager)target;
 
-        if (GUILayout.Button("Crear Enum desde GameObjects"))
+        if (GUILayout.Button("Create the enum from the GameObjects"))
         {
             manager.CrearEnumDesdeObjetos();
         }

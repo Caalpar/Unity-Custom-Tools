@@ -1,19 +1,18 @@
-# Unity Custom Tools - Herramienta de Lenguaje para Unity
+# Object Manager - Herramienta de Gestión de GameObjects para Unity
+![ObjcetManager](Assets/img/ObjectManager.jpg)  
 
-![Captura de Pantalla/GIF del Proyecto](ruta/a/tu/captura_o_gif.gif)
-_Una captura de pantalla o un GIF corto de tu escena demo en acción._
-
-Una herramienta de localización simple pero potente para Unity, diseñada para gestionar y cambiar fácilmente entre múltiples idiomas tanto para activos de texto como de audio dentro de tus proyectos de Unity.
+**Object Manager** es una herramienta ligera y eficiente para Unity, diseñada para simplificar la activación y desactivación de GameObjects a través de un sistema de gestión centralizado.  
+Su característica principal es la capacidad de generar **Enums personalizados** a partir de tu lista de GameObjects, permitiéndote controlar los objetos de tu escena de forma segura y legible, sin depender de índices mágicos o cadenas de texto.
 
 ---
 
-## ✨ Características
+## ✨ Características Principales
 
-* **Gestión Basada en ScriptableObject:** Datos de idioma centralizados usando **ScriptableObjects** para una fácil organización y edición.
-* **Localización de Texto:** Localiza sin problemas todos los elementos de texto de la UI.
-* **Localización de Audio:** Gestiona y reproduce clips de audio específicos para cada idioma.
-* **Traducciones Indexadas:** Asegura que las traducciones de texto y audio para cada idioma se alineen perfectamente usando índices de array.
-* **Fácil Integración:** Diseñado para una configuración rápida y cambios de código mínimos en proyectos existentes.
+- **Gestión Centralizada:** Un único script para controlar múltiples GameObjects.
+- **Generación de Enums:** Crea Enums automáticamente a partir de tu lista de GameObjects para un código limpio y sin errores.
+- **Control Sencillo:** Métodos intuitivos para activar, desactivar y alternar GameObjects usando tanto índices como los Enums generados.
+- **Acceso Directo:** Accede a los GameObjects del array usando el indexador `this[]`.
+- **Fácil Integración:** Utiliza el Prefab incluido o añade el script a un GameObject de tu escena.
 
 ---
 
@@ -21,140 +20,73 @@ Una herramienta de localización simple pero potente para Unity, diseñada para 
 
 ### Instalación
 
-Clona o descarga este repositorio en la carpeta `Assets` de tu proyecto Unity.
-    ```bash
-    git clone https://github.com/Caalpar/Unity-Custom-Tools.git 
-    ```
-
+1. Clona o descarga el repositorio en tu proyecto de Unity.
+2. Los scripts necesarios y un prefab ya están incluidos en el proyecto.
 
 ### Cómo Usar
 
-### 1. Crea tus Activos de Idioma
+#### 1. Configuración del Object Manager
 
-#### Create LanguagueManager:
-  ![Create LanguagueManager](Assets/img/Tutorial1_1.jpg)
-#### Create Languague:
-  ![Create Languague](Assets/img/Tutorial1_2.jpg)
-  
-  (Crea uno para cada idioma que quieras soportar, por ejemplo, "English", "Spanish", "French").
+- Arrastra y suelta el **Prefab `ObjectManager`** desde la carpeta del proyecto a tu escena.
+- En el Inspector, arrastra y suelta los **GameObjects** que quieras gestionar en el array `List Objects`.
+- Opcionalmente, especifica la **ruta de la carpeta** donde se guardarán los Enums generados en el campo `Path Folder`.
 
-#### 2. Configura tu Language Manager
+#### 2. Generación de Enums
 
-1.  Selecciona tu ScriptableObject `LanguageManager` en la ventana del Proyecto.
-2.  Arrastra y suelta tus ScriptableObjects `Language` en el array "Languages".
-3.  Establece el `Default Language` al idioma que quieras cargar inicialmente.
+Una vez que tengas tu lista de objetos configurada, podés generar un Enum para ellos:
 
-     ![Config LanguagueManager](Assets/img/Tutorial1_3.jpg)
+- Haz clic derecho en el componente **Object Manager** en el Inspector.
+- Selecciona **"Create the enum from the GameObjects"**.
 
-#### 3. Añade Traducciones a Cada Idioma
+Esto generará un archivo `.cs` con un enum que contiene los nombres de tus GameObjects, listo para ser usado en tus scripts.
 
-1.  Selecciona un ScriptableObject `Language` (por ejemplo, "Spanish").
-2.  En el Inspector, expande los arrays "Words" y "Audios".
-3.  **Fundamentalmente, asegúrate de que el índice para un texto/audio específico coincida en todos los idiomas.**
-    * Ej: `Text Translations[0]` = "Hola Mundo" (Español)
-    * `Text Translations[0]` = "Hello World" (Inglés)
-    * `Audio Translations[0]` = `audio_hola_espanol.mp3`
-    * `Audio Translations[0]` = `audio_hello_english.mp3`
-  
-    ![Config LanguagueManager](Assets/img/Tutorial1_4.jpg)
+> **Nota:** La herramienta toma el nombre de la escena para nombrar el Enum  
+> (Ejemplo: si tu escena se llama `Main Menu`, el Enum se llamará `ITEM_MAIN_MENU`).
 
-#### 4. Usando en Tu Escena
+#### 3. Uso en tus Scripts
 
-* **Para Texto:**
-    1.  Añade un componente `SetText` a tu GameObject `TextMeshProUGUI` o `UI.Text`.
-    2.  Asigna el índice de texto deseado de tus ScriptableObjects `Language`.
-    3.  Asigna el  `LanguageManager` que quieres usar.
-    4.  Asigna la referencia de tu `TextMeshProUGUI` o `UI.Text`.
+Ahora podés usar tu nuevo Enum para controlar los GameObjects de forma segura y legible.
 
-    ![Config LanguagueText](Assets/img/Tutorial1_5.jpg)
-
-* **Para Audio:**
-    1.  Añade el prefab `PlayAudio` a tu escena.
-    2.  Anade el `LanguageManager` que quieres usar.
-    3.  Llama a la funcion Play e indicale en que indece esta el audio que quieres.
-       
-        ```csharp
-        // Codigo de PlayAudio
-        public class PlayAudio : MonoBehaviour
-        {
-            [SerializeField] LanguageManager languageManager;
-            AudioSource audioSource;
-
-            // Start is called before the first frame update
-            void Start()
-            {
-                if (audioSource == null)
-                {
-                    audioSource = gameObject.AddComponent<AudioSource>();
-                    audioSource.loop = false;
-                    audioSource.playOnAwake = false;
-                }
-            }
-
-
-            public void Play(int index)
-            {
-                if(audioSource.isPlaying)
-                    audioSource.Pause();
-                    AudioClip clip = languageManager.GetAudio(index);
-                if (clip != null)
-                {
-                    audioSource.clip = clip;
-                    audioSource.Play();
-                }
-        
-            }
-        }
-        ```
-
-#### 5. Cambiando Idiomas en Tiempo de Ejecución
-
-Puedes cambiar el idioma actual llamando a un método en tu `LanguageManager`.
+##### Ejemplo de Activación/Desactivación
 
 ```csharp
-// Fragemto del codigo de LanguaManager que cambia el lenguaje
-    public void SetLanguage(int languageType) // Tener en cuenta de respetar el orden del enum LanguageType, al usar este metodo
+using UnityEngine;
+// Asegúrate de incluir el namespace del Enum si es necesario
+// (ej: using GeneratedEnums;)
+
+public class MyGameManager : MonoBehaviour
+{
+    // Asigna tu ObjectManager desde el Inspector
+    [SerializeField] private ObjectManager myObjectManager;
+
+    void Start()
     {
-
-        _languageType = (LanguageType)languageType;
-
-        if (UpdateText != null)
-        {
-            UpdateText.Invoke();
-        }
-
+        // Activar el panel de configuración usando el Enum
+        myObjectManager.Active(ITEM_MAIN_MENU.Panel_Settings);
     }
 
-    public void SetLanguage(LanguageType languageType)
+    public void OpenCredits()
     {
-
-        _languageType = languageType;
-
-        if (UpdateText != null)
-        {
-            UpdateText.Invoke();
-        }
-
+        // Alternar el panel de créditos
+        myObjectManager.Toggle(ITEM_MAIN_MENU.Panel_Credits);
     }
+}
 ```
 
-#### 6. Agregar idioma
-
-1. agregar un idioma abriendo el enm `LanguageType` y agregarlo.
+##### Ejemplo de Acceso a un GameObject:
 
 ```csharp
-    public enum LanguageType
-    {
-        Ingles,
-        Espanol,
-        Portugues,
-        Frances,
-        Arab
-    }
+// Obtener el GameObject del panel de configuración
+GameObject settingsPanel = myObjectManager[ITEM_MAIN_MENU.Panel_Settings];
+
+if (settingsPanel != null)
+{
+    // Hacer algo con el GameObject
+    Debug.Log("Accediendo al objeto: " + settingsPanel.name);
+}
 ```
+👨‍💻 **Contribuciones**  
+¡Las contribuciones son bienvenidas! Si tienes ideas para mejoras o encuentras un error, por favor, siéntete libre de abrir un issue o enviar un **pull request**.
 
-2. Crea un ScriptableObject `Language` (por ejemplo, "Arab").
-3. Agrega los textos y auidos que corresponden a ese idioma
-4. Agregalo a tu `LanguageManager` y listo.
-
-
+📜**Licencia**  
+Este proyecto está bajo la **Licencia MIT**. Consulta el archivo `LICENSE` para más detalles.
