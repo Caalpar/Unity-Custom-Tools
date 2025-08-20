@@ -7,7 +7,7 @@ Este es un proyecto demo desarrollado en **Unity** que permite al usuario conduc
 
 Mira este video para ver el proyecto en acción:
 
-[Video de demostración de nuestro auto virtual en funcionamiento](Assets/Video/HandTrakingCarVideo.mp4)
+![Video de demostración de nuestro auto virtual en funcionamiento](Assets/Video/HandTrakingCarVideo.gif)
 
 -----
 
