@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/SimpleCarController/Scripts/OnOffController.cs.meta
+guid: 22e2fdf8c12955a4b8691bb0b4a23dd4
+========
+guid: ae345c1e8bfa1564ea5f960c1d24270b
+>>>>>>>> ObjectsManager:Assets/GeneratedEnums/ITEM_OBJECTMANAGER.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
