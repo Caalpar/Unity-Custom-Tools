@@ -51,6 +51,10 @@ public class {newAssetName} : ActionStep
     {{
 
     }}
+    public override void ResetStep(Actor[] actors)
+    {{
+
+    }}
 
 }}";
         File.WriteAllText(scriptPath, scriptTemplate);

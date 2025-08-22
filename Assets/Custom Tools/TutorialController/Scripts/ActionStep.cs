@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ActionStep : MonoBehaviour
+public abstract class ActionStep : MonoBehaviour
 {
     public TutorialController tutorialController;
     protected ObjectManager objectsManager;
@@ -70,6 +70,10 @@ public class ActionStep : MonoBehaviour
         tutorialController.TryNextStep();
         completed = true;
     }
+
+
+    public abstract void ResetStep(Actor[] actors);
+
 
     public GameObject this[Enum valor]
     {

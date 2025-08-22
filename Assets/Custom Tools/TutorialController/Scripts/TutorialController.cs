@@ -42,7 +42,7 @@ public class TutorialController : MonoBehaviour
         ShowStep(currentStepIndex);
     }
 
-    void ShowStep(int index)
+    void ShowStep(int index, bool reset = false)
     {
 
         if (index >= currentTutorial.steps.Length)
@@ -60,6 +60,8 @@ public class TutorialController : MonoBehaviour
         {
             prefabStep = Instantiate(step.prefabStep, transform.position, Quaternion.identity);
             prefabStep.GetComponent<ActionStep>().tutorialController = this;
+            if(reset)
+                prefabStep.GetComponent<ActionStep>().ResetStep(step.actors);
         }
 
         if (step.audio)
@@ -154,8 +156,18 @@ public class TutorialController : MonoBehaviour
         }
     }
 
-    void RestartStep()
+    public void SelectStep(int indexStep)
     {
-        ShowStep(currentStepIndex);
+        if (indexStep < 0) return;
+        if (indexStep >= currentTutorial.steps.Length) return;
+
+        currentStepIndex = indexStep;
+
+        ShowStep(currentStepIndex, true);
+    }
+
+    public void RestartStep()
+    {
+        ShowStep(currentStepIndex,true);
     }
 }

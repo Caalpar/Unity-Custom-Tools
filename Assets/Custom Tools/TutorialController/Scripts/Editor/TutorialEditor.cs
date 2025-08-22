@@ -81,6 +81,10 @@ public class {finalStepName} : ActionStep
     {{
 
     }}
+    public override void ResetStep(Actor[] actors)
+    {{
+
+    }}
 }}";
         File.WriteAllText(scriptPath, scriptTemplate);
         AssetDatabase.Refresh();
