@@ -11,7 +11,7 @@ public class TutorialControllerEditor : Editor
         base.OnInspectorGUI();
         if (GUILayout.Button("Next Step"))
         {
-            ((TutorialController)target).UserAction(true);
+            ((TutorialController)target).TryNextStep();
         }
     }
 }

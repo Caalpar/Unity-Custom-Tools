@@ -67,13 +67,12 @@ public class ActionStep : MonoBehaviour
 
         if (tutorialController == null) throw new Exception("Tutorial Controller is null");
 
-        tutorialController.UserAction(true);
+        tutorialController.TryNextStep();
         completed = true;
     }
 
     public GameObject this[Enum valor]
     {
-
         get
         {
             return objectsManager[valor];

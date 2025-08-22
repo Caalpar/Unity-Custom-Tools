@@ -3,42 +3,38 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 
-
+[RequireComponent(typeof(LanguageManager))]
 public class TutorialController : MonoBehaviour
 {
-  
-    public Tutorial currentTutorial;
-
+    [SerializeField] Tutorial currentTutorial;
+    [SerializeField] bool startTutorial = true;
+    
+    private LanguageManager languageManager;
     private int currentStepIndex;
     private bool isStepCompleted;
     private int score;
     private bool isPaused;
-    private GameObject currentVisualAid;
+    private GameObject prefabStep;
     private AudioSource audioSource;
-    [SerializeField] LanguageManager languageManager;
-
-    [SerializeField] bool startTutorial = true;
 
     public bool isRunStep {  get; private set; }
     public int currentStep { get { return currentStepIndex; } }
-
     public bool isAudioPlay { get {  return audioSource.isPlaying; } }
 
     private void Start()
     {
-
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
+ 
         currentStepIndex = 0;
         isStepCompleted = false;
         score = 0;
         isPaused = false;
 
-        if (currentTutorial.languageManager != null)
-            languageManager = currentTutorial.languageManager;
+       languageManager = currentTutorial.languageManager;
 
         if (startTutorial)
-            ShowStep(currentStepIndex);
+            Play();
     }
 
     public void Play()
@@ -57,40 +53,26 @@ public class TutorialController : MonoBehaviour
 
         if (isPaused) return;
 
-
         isRunStep = true;
         TutorialStep step = currentTutorial.steps[index];
-     //   instructionText.text = step.instructionText;
 
-        if (step.visualAidPrefab != null)
+        if (step.prefabStep != null)
         {
-            currentVisualAid = Instantiate(step.visualAidPrefab, transform.position, Quaternion.identity);
-            currentVisualAid.GetComponent<ActionStep>().tutorialController = this;
+            prefabStep = Instantiate(step.prefabStep, transform.position, Quaternion.identity);
+            prefabStep.GetComponent<ActionStep>().tutorialController = this;
         }
 
         if (step.audio)
         {
-
             AudioClip clip = null;
 
-            if (languageManager == null) {
-                throw new Exception("Language manager is empty");
-            }
-            else
-            {
-                clip = languageManager.GetAudio(step.audioIndex);
-            }
+            clip = languageManager.GetAudio(step.audioIndex);
             
             if (clip != null)
             {
                 audioSource.PlayOneShot(clip);
             }
         }
-
-       
-
-
- 
 
         if (step.completionCondition == CompletionCondition.TimeBased)
         {
@@ -101,27 +83,20 @@ public class TutorialController : MonoBehaviour
     IEnumerator WaitAndCompleteStep(float duration)
     {
         yield return new WaitForSeconds(duration);
-        CompleteStep();
+        isStepCompleted = true;
+        isRunStep = false;
+        NextStep();
     }
 
-    public void UserAction(bool isCorrect)
+    public void TryNextStep()
     {
         if (isPaused) return;
 
         if (currentTutorial.steps[currentStepIndex].completionCondition == CompletionCondition.ActionBased)
         {
-            if (isCorrect)
-            {
-      
                 score++;
                 isStepCompleted = true;
                 NextStep();
-            }
-            else
-            {
-                RestartStep();
-            }
-            UpdateUI();
         }
     }
 
@@ -133,7 +108,7 @@ public class TutorialController : MonoBehaviour
     IEnumerator Delay(int sec)
     {
         yield return new WaitForSeconds(sec);
-        UserAction(true);
+        TryNextStep();
     }
 
     public void PauseTutorial()
@@ -148,13 +123,6 @@ public class TutorialController : MonoBehaviour
         ShowStep(currentStepIndex);
     }
 
-    void CompleteStep()
-    {
-        isStepCompleted = true;
-        isRunStep = false;
-        NextStep();
-    }
-
     void NextStep()
     {
 
@@ -164,10 +132,10 @@ public class TutorialController : MonoBehaviour
         }
         else
         {
-            if (currentVisualAid != null)
+            if (prefabStep != null)
             {
                 isRunStep = false;
-                Destroy(currentVisualAid);
+                Destroy(prefabStep);
             }
 
             currentStepIndex++;
@@ -184,17 +152,10 @@ public class TutorialController : MonoBehaviour
 
             isStepCompleted = false;
         }
-
- 
     }
 
     void RestartStep()
     {
         ShowStep(currentStepIndex);
-    }
-
-    void UpdateUI()
-    {
-        // Actualiza la interfaz de usuario según sea necesario
     }
 }

@@ -12,7 +12,7 @@ public class TutorialStep : ScriptableObject
 {
     public bool audio= true;
     public int audioIndex;
-    public GameObject visualAidPrefab;
+    public GameObject prefabStep;
     public float stepDuration;
     public CompletionCondition completionCondition;
 }

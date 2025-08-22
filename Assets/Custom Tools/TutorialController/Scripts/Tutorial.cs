@@ -8,7 +8,5 @@ using System;
 public class Tutorial : ScriptableObject
 {
     public LanguageManager languageManager;
-    public string tutorialName;
     public TutorialStep[] steps;
-
 }
