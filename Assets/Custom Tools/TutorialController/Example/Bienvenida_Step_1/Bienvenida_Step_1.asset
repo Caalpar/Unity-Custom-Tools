@@ -10,15 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e584679e23f3b044aaf16df5af855f0, type: 3}
-  m_Name: Inicio_Step_1
+  m_Name: Bienvenida_Step_1
   m_EditorClassIdentifier: 
   audio: 1
   audioIndex: 0
-  prefabStep: {fileID: 6818343558502794636, guid: 4ed08e651504cb14e845ddac5b3f7671, type: 3}
+  prefabStep: {fileID: 8962239287685544149, guid: f67f821d6cf8bc64bbc1b7b7776231b0, type: 3}
   stepDuration: 0
   completionCondition: 0
   actors:
-  - enumTypeName: ITEM_OBJECTMANAGER
-    objectID: Cube
+  - enumTypeName: ITEM_TUTORIALCONTROLLER
+    objectID: CARRERA
+    targetPosition: {x: 0, y: 0, z: 0}
+    targetRotation: {x: 0, y: 0, z: 0, w: 0}
+  - enumTypeName: ITEM_TUTORIALCONTROLLER
+    objectID: Environment
     targetPosition: {x: 0, y: 0, z: 0}
     targetRotation: {x: 0, y: 0, z: 0, w: 0}

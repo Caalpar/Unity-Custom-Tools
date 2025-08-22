@@ -59,7 +59,7 @@ public class TutorialStepEditor : Editor
         if (enumTypes.Length > 0)
         {
             string[] enumNames = enumTypes.Select(t => t.Name).ToArray();
-            int newIndex = EditorGUILayout.Popup("Seleccionar tipo de Enum", selectedEnumIndex, enumNames);
+            int newIndex = EditorGUILayout.Popup("Select items of scence", selectedEnumIndex, enumNames);
 
             if (newIndex != selectedEnumIndex)
             {

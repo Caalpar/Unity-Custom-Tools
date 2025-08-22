@@ -8,8 +8,11 @@ public class ObjectManager : MonoBehaviour
 {
 
     string pathFolder = "GeneratedEnums";
+    [HideInInspector]
+    public  GameObject[] listObjects;
 
-    [SerializeField] GameObject[] listObjects;
+
+    public int listObjectsAmount { get { return listObjects.Length; } }
 
     public void Active(Enum value)
     {

@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e584679e23f3b044aaf16df5af855f0, type: 3}
-  m_Name: New_Step_Step_2
+  m_Script: {fileID: 11500000, guid: fb99c29cbb711624ab1db3e9fb82485b, type: 3}
+  m_Name: "Espa\xF1ol"
   m_EditorClassIdentifier: 
-  audio: 1
-  audioIndex: 0
-  prefabStep: {fileID: 6176120661050912114, guid: 4ba660d9132e19b4caaba734e3d5be4f, type: 3}
-  stepDuration: 0
-  completionCondition: 0
-  actors: []
+  LanguageType: 0
+  words: []
+  audios: []

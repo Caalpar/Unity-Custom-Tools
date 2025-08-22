@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class New_Step_Step_2 : ActionStep
+public class Bienvenida_Step_1 : ActionStep
 {
     private void Start()
     {
