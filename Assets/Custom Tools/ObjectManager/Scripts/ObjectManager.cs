@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class ObjectManager : MonoBehaviour
 {
 
-    [SerializeField] string pathFolder = "GeneratedEnums";
+    string pathFolder = "GeneratedEnums";
 
     [SerializeField] GameObject[] listObjects;
 

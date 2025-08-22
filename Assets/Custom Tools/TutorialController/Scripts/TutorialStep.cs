@@ -15,4 +15,5 @@ public class TutorialStep : ScriptableObject
     public GameObject prefabStep;
     public float stepDuration;
     public CompletionCondition completionCondition;
+    public Actor[] actors;
 }
