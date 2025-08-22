@@ -4,8 +4,13 @@ using System;
 [Serializable]
 public class Actor 
 {
-    [EnumDropdown(typeof(ITEM_OBJECTMANAGER))]
+    // Campo para que el editor sepa qué enum mostrar
+    [HideInInspector] // Oculta este campo del Inspector normal
+    public string enumTypeName;
+
+    // Aquí ya tienes el atributo, que es el que usaremos en el PropertyDrawer
     public string objectID;
+
     public Vector3 targetPosition;
     public Quaternion targetRotation;
 }

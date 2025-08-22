@@ -11,63 +11,87 @@ public class TutorialStepEditor : Editor
     private Type[] enumTypes;
     private int selectedEnumIndex = 0;
     private string selectedEnumName;
+    private Type selectedEnumType;
+    private int lastActorCount = 0; // Agregamos esta variable
 
     private void OnEnable()
     {
-        // 1. Define la ruta de la carpeta que quieres buscar
         string folderPath = "Assets/GeneratedEnums";
-
-        // 2. Encuentra todos los archivos .cs en esa carpeta
         string[] scriptPaths = AssetDatabase.FindAssets("t:TextAsset", new string[] { folderPath })
             .Select(guid => AssetDatabase.GUIDToAssetPath(guid))
             .Where(path => path.EndsWith(".cs"))
             .ToArray();
 
-        // 3. Obtén los nombres de las clases de esos archivos
         string[] classNames = scriptPaths.Select(path => Path.GetFileNameWithoutExtension(path)).ToArray();
 
-        // 4. Busca los tipos de C# que coincidan con esos nombres y que sean enums
         enumTypes = AppDomain.CurrentDomain.GetAssemblies()
             .SelectMany(assembly => assembly.GetTypes())
             .Where(type => type.IsEnum && type.IsPublic && classNames.Contains(type.Name))
             .ToArray();
 
         TutorialStep tutorialStep = (TutorialStep)target;
+        if (tutorialStep.actors != null && tutorialStep.actors.Length > 0 && tutorialStep.actors[0] != null)
+        {
+            selectedEnumName = tutorialStep.actors[0].enumTypeName;
+            selectedEnumType = enumTypes.FirstOrDefault(t => t.Name == selectedEnumName);
+            if (selectedEnumType != null)
+            {
+                selectedEnumIndex = Array.IndexOf(enumTypes.Select(t => t.Name).ToArray(), selectedEnumName);
+            }
+        }
+        else if (enumTypes.Length > 0)
+        {
+            // Si no hay actores, selecciona el primer enum por defecto
+            selectedEnumName = enumTypes[0].Name;
+            selectedEnumType = enumTypes[0];
+            selectedEnumIndex = 0;
+        }
 
+        lastActorCount = tutorialStep.actors != null ? tutorialStep.actors.Length : 0;
     }
 
     public override void OnInspectorGUI()
     {
-        TutorialStep tutorialStep = (TutorialStep)target;
         serializedObject.Update();
 
-        // Draw the default inspector for the base properties
-        DrawPropertiesExcluding(serializedObject, "m_Script", "startCommands");
+        DrawPropertiesExcluding(serializedObject, "m_Script", "actors");
 
-        // --- Custom Enum Selector ---
-
-        // Get a list of enum names to display in the dropdown
-        string[] enumNames = enumTypes.Select(t => t.Name).ToArray();
-
-        if (selectedEnumName != null)
+        if (enumTypes.Length > 0)
         {
-            int index = Array.IndexOf(enumNames, selectedEnumName);
-            selectedEnumIndex = index >= 0 ? index : 0;
-        }
+            string[] enumNames = enumTypes.Select(t => t.Name).ToArray();
+            int newIndex = EditorGUILayout.Popup("Seleccionar tipo de Enum", selectedEnumIndex, enumNames);
 
-        // Display the enum type dropdown
-        int newIndex = EditorGUILayout.Popup("Select Enum Type", selectedEnumIndex, enumNames);
-        if (newIndex != selectedEnumIndex)
-        {
-            selectedEnumIndex = newIndex;
-
-            for (int i = 0; i < tutorialStep.actors.Length; i++)
+            if (newIndex != selectedEnumIndex)
             {
-                tutorialStep.actors[i].objectID = enumNames[newIndex];
+                selectedEnumIndex = newIndex;
+                selectedEnumName = enumNames[newIndex];
+                selectedEnumType = enumTypes[newIndex];
             }
         }
+        else
+        {
+            EditorGUILayout.HelpBox("No se encontraron enums en la carpeta especificada.", MessageType.Warning);
+        }
 
-        SerializedProperty startCommandsProp = serializedObject.FindProperty("startCommands");
+        SerializedProperty actorsProp = serializedObject.FindProperty("actors");
+
+        // La clave: detectamos si la lista cambió de tamaño
+        if (actorsProp.arraySize != lastActorCount)
+        {
+            // Si la lista creció, inicializamos los nuevos elementos
+            if (actorsProp.arraySize > lastActorCount)
+            {
+                for (int i = lastActorCount; i < actorsProp.arraySize; i++)
+                {
+                    SerializedProperty actorProp = actorsProp.GetArrayElementAtIndex(i);
+                    actorProp.FindPropertyRelative("enumTypeName").stringValue = selectedEnumName;
+                }
+            }
+            lastActorCount = actorsProp.arraySize;
+        }
+
+        EditorGUILayout.PropertyField(actorsProp, true);
+
         serializedObject.ApplyModifiedProperties();
     }
 }
