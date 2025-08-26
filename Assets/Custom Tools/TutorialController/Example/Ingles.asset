@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb99c29cbb711624ab1db3e9fb82485b, type: 3}
-  m_Name: "Espa\xF1ol"
+  m_Name: Ingles
   m_EditorClassIdentifier: 
   LanguageType: 0
   words:

@@ -10,6 +10,13 @@ public enum CompletionCondition
 [CreateAssetMenu(fileName = "TutorialStep", menuName = "Tutorial/TutorialStep")]
 public class TutorialStep : ScriptableObject
 {
+    [HideInInspector]
+    public string audioEnumTypeName;
+    [HideInInspector]
+    public string audioEnumValueName;
+    [HideInInspector]
+    public int audioEnumValueIndex;
+
     public bool audio= true;
     public int audioIndex;
     public GameObject prefabStep;

@@ -19,7 +19,7 @@ public class LanguageManagerEditor : Editor
                 ItemName = ItemName.Replace("-", "");
                 ItemName = ItemName.ToUpper();
                 ItemName = EnumCreator.EliminarCaracteresDuplicadosConsecutivos(ItemName, '_');
-                EnumCreator.CrearEnum("LANGUAGUE_TEXT_" + ItemName, manager.GetAllWords(), "EnumsLanguageManager/Texts/");
+                EnumCreator.CrearEnum("LANGUAGUE_TEXT_" + ItemName, manager.GetAllWords(), "EnumsLanguagueManager/Texts/");
         }
 
         if (GUILayout.Button("Create the enum audios"))
@@ -38,7 +38,7 @@ public class LanguageManagerEditor : Editor
                 {
                     audiosNames[i] = audios[i].name;
                 }
-                 EnumCreator.CrearEnum("LANGUAGUE_AUDIO_" + ItemName, audiosNames, "EnumsLanguageManager/Audios/"); ;
+                 EnumCreator.CrearEnum("LANGUAGUE_AUDIO_" + ItemName, audiosNames, "EnumsLanguagueManager/Audios/"); ;
             }
 
         }

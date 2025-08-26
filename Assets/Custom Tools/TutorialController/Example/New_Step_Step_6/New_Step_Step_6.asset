@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e584679e23f3b044aaf16df5af855f0, type: 3}
-  m_Name: Bienvenida_Step_1
+  m_Name: New_Step_Step_6
   m_EditorClassIdentifier: 
   audio: 1
   audioIndex: 0
   audioEnumTypeName: LANGUAGUE_AUDIO_LANGUAGEMANAGER
-  prefabStep: {fileID: 8962239287685544149, guid: f67f821d6cf8bc64bbc1b7b7776231b0, type: 3}
+  audioEnumValueName: 
+  prefabStep: {fileID: 0}
   stepDuration: 0
-  completionCondition: 0
+  completionCondition: 1
   actors:
-  - enumTypeName: ITEM_TUTORIALCONTROLLER
-    objectID: Environment
+  - enumTypeName: 
+    objectID: 
     targetPosition: {x: 0, y: 0, z: 0}
     targetRotation: {x: 0, y: 0, z: 0, w: 0}
