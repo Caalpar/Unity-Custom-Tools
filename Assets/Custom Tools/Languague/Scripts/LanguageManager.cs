@@ -12,6 +12,24 @@ public class LanguageManager : ScriptableObject
     public UpdateTextDelegate UpdateText = null;
 
 
+    public string[] GetAllWords()
+    {
+        if (_languagesStrings.Length == 0) return null;
+
+        if (_languagesStrings[0].words.Length == 0) return null;
+
+        return _languagesStrings[0].words;
+    }
+
+    public AudioClip[] GetAllAudios()
+    {
+        if (_languagesStrings.Length == 0) return null;
+
+        if (_languagesStrings[0].audios.Length == 0) return null;
+
+        return _languagesStrings[0].audios;
+    }
+
     public string GetText(int indexWord)
     {
         if (_languagesStrings.Length == 0) return "Language not found";

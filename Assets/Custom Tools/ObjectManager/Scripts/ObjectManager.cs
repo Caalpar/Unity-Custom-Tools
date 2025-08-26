@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class ObjectManager : MonoBehaviour
 {
 
-    string pathFolder = "GeneratedEnums";
+    string pathFolder = "EnumsObjectManager";
     [HideInInspector]
     public  GameObject[] listObjects;
 

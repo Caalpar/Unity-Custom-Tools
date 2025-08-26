@@ -20,7 +20,7 @@ public class ObjectManagerEditor : Editor
         // --- Título para la lista de checkboxes ---
         EditorGUILayout.Space(5); // Pequeño espacio para separar
         EditorGUILayout.LabelField("Objects control", EditorStyles.boldLabel);
-        EditorGUILayout.Space(5);
+        EditorGUILayout.Space(5);  
         // ------------------------------------------
 
         // Dibuja el contenido de cada elemento del array
@@ -73,7 +73,7 @@ public class ObjectManagerEditor : Editor
         {
             for (int i = 0; i < manager.listObjectsAmount; i++)
             {
-                manager.Active(i);
+                manager.Active(i); 
             }
         }
     }

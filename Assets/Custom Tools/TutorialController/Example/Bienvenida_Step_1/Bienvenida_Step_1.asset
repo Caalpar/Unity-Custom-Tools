@@ -22,7 +22,3 @@ MonoBehaviour:
     objectID: CARRERA
     targetPosition: {x: 0, y: 0, z: 0}
     targetRotation: {x: 0, y: 0, z: 0, w: 0}
-  - enumTypeName: ITEM_TUTORIALCONTROLLER
-    objectID: Environment
-    targetPosition: {x: 0, y: 0, z: 0}
-    targetRotation: {x: 0, y: 0, z: 0, w: 0}

@@ -16,7 +16,7 @@ public class TutorialStepEditor : Editor
 
     private void OnEnable()
     {
-        string folderPath = "Assets/GeneratedEnums";
+        string folderPath = "Assets/EnumsObjectManager";
         string[] scriptPaths = AssetDatabase.FindAssets("t:TextAsset", new string[] { folderPath })
             .Select(guid => AssetDatabase.GUIDToAssetPath(guid))
             .Where(path => path.EndsWith(".cs"))
@@ -44,7 +44,7 @@ public class TutorialStepEditor : Editor
             // Si no hay actores, selecciona el primer enum por defecto
             selectedEnumName = enumTypes[0].Name;
             selectedEnumType = enumTypes[0];
-            selectedEnumIndex = 0;
+            selectedEnumIndex = 0; 
         }
 
         lastActorCount = tutorialStep.actors != null ? tutorialStep.actors.Length : 0;

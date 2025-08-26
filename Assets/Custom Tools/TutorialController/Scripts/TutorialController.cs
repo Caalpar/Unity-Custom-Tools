@@ -2,12 +2,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(LanguageManager))]
 public class TutorialController : MonoBehaviour
 {
     [SerializeField] Tutorial currentTutorial;
     [SerializeField] bool startTutorial = true;
+    
     
     private LanguageManager languageManager;
     private int currentStepIndex;
@@ -16,13 +18,15 @@ public class TutorialController : MonoBehaviour
     private bool isPaused;
     private GameObject prefabStep;
     private AudioSource audioSource;
-
+    private List<Actor> actors; 
     public bool isRunStep {  get; private set; }
     public int currentStep { get { return currentStepIndex; } }
     public bool isAudioPlay { get {  return audioSource.isPlaying; } }
 
     private void Start()
     {
+        actors = new List<Actor>();
+
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
  
