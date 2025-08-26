@@ -7,13 +7,13 @@ using TMPro;
 
 public class SetText : MonoBehaviour
 {
-    [SerializeField ] int index;
-
+    int index;
     [SerializeField] LanguageManager languageManager;
 
     [SerializeField] TextMeshProUGUI textUI;
     TextMeshPro text;
 
+    public int Index { set { index = value; } get { return index; } }
     void Awake()
     {
         UpdateText();

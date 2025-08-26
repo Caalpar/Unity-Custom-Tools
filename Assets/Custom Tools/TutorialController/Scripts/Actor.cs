@@ -11,6 +11,8 @@ public class Actor
     // Aquí ya tienes el atributo, que es el que usaremos en el PropertyDrawer
     public string objectID;
 
+    public bool alwaysActive;
+
     public Vector3 targetPosition;
     public Quaternion targetRotation;
 }

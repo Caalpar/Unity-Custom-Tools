@@ -136,7 +136,7 @@ public class TutorialStepEditor : Editor
                 // Guarda el valor seleccionado en el ScriptableObject
                 TutorialStep tutorialStep = (TutorialStep)target;
                 tutorialStep.audioEnumTypeName = selectedAudioEnumName;
-                tutorialStep.audioEnumValueIndex = selectedAudioValueIndex;
+                tutorialStep.AudioIndex = selectedAudioValueIndex;
                 tutorialStep.audioEnumValueName = audioValues[selectedAudioValueIndex];
             }
         }

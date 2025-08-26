@@ -72,7 +72,7 @@ public class TutorialController : MonoBehaviour
         {
             AudioClip clip = null;
 
-            clip = languageManager.GetAudio(step.audioIndex);
+            clip = languageManager.GetAudio(step.AudioIndex);
             
             if (clip != null)
             {
