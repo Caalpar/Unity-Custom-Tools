@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -72,7 +73,32 @@ public abstract class ActionStep : MonoBehaviour
     }
 
 
-    public abstract void ResetStep(Actor[] actors);
+    public virtual void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial)
+    {
+        for (int i = 0; i < actorsInTutorial.Length; i++)
+        {
+            bool foundActor = false;
+            
+            for (int j = 0; j < actorsInStep.Length; j++)
+            {
+                if (actorsInTutorial[i].objectID == actorsInStep[j].objectID)
+                {
+                    foundActor = true;
+                    break;
+                }
+            }
+
+            if (foundActor)
+            {
+                Active(actorsInTutorial[i].enumIndexItem);
+            }
+            else
+            {
+                Desactive(actorsInTutorial[i].enumIndexItem);
+            }
+
+        }
+    }
 
 
     public GameObject this[Enum valor]

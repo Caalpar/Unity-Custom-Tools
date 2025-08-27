@@ -39,6 +39,7 @@ public class CreateTutorialStep
 
         // 1. Crear el C# Script
         string scriptTemplate = $@"using UnityEngine;
+using System.Linq;
 
 public class {newAssetName} : ActionStep
 {{
@@ -51,9 +52,9 @@ public class {newAssetName} : ActionStep
     {{
 
     }}
-    public override void ResetStep(Actor[] actors)
+    public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial)
     {{
-
+        base.StartStep(actorsInStep, actorsInTutorial);
     }}
 
 }}";

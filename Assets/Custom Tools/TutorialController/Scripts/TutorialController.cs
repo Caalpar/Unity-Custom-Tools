@@ -58,7 +58,7 @@ public class TutorialController : MonoBehaviour
         ShowStep(currentStepIndex);
     }
 
-    void ShowStep(int index, bool reset = false)
+    void ShowStep(int index)
     {
 
         if (index >= currentTutorial.steps.Length)
@@ -75,31 +75,25 @@ public class TutorialController : MonoBehaviour
         if (step.prefabStep != null)
         {
             prefabStep = Instantiate(step.prefabStep, transform.position, Quaternion.identity);
-            prefabStep.GetComponent<ActionStep>().tutorialController = this;
-            if(reset)
-                prefabStep.GetComponent<ActionStep>().ResetStep(step.actors);
-            else
-            {
-                foreach (Actor actorInStep in step.actors)
-                {
-                    if (actors.Contains(actorInStep)) 
-                        objectManager.Active(actorInStep.enumIndexItem);
-                    else
-                        objectManager.Desactive(actorInStep.enumIndexItem);   
-                }
-            }
+            ActionStep action = prefabStep.GetComponent<ActionStep>();
+            action.tutorialController = this;
+            action.StartStep(step.actors, actors.ToArray());   
         }
 
         if (step.audio)
         {
             AudioClip clip = null;
 
-            clip = languageManager.GetAudio(step.AudioIndex);
-            
-            if (clip != null)
+            if(languageManager != null)
             {
-                audioSource.PlayOneShot(clip);
+                clip = languageManager.GetAudio(step.AudioIndex);
+
+                if (clip != null)
+                {
+                    audioSource.PlayOneShot(clip);
+                }
             }
+   
         }
 
         if (step.completionCondition == CompletionCondition.TimeBased)

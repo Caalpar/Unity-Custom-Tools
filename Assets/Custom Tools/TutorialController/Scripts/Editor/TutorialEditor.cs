@@ -69,6 +69,7 @@ public class TutorialEditor : Editor
         string finalAssetPath = Path.Combine(newDirectoryPath, finalStepName + ".asset");
 
         string scriptTemplate = $@"using UnityEngine;
+using System.Linq;
 
 public class {finalStepName} : ActionStep
 {{
@@ -81,9 +82,9 @@ public class {finalStepName} : ActionStep
     {{
 
     }}
-    public override void ResetStep(Actor[] actors)
+    public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial)
     {{
-
+        base.StartStep(actorsInStep, actorsInTutorial);
     }}
 }}";
         File.WriteAllText(scriptPath, scriptTemplate);
