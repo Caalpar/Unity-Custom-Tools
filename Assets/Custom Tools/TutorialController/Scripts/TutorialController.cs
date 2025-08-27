@@ -7,14 +7,14 @@ using System.Collections.Generic;
 [RequireComponent(typeof(LanguageManager))]
 public class TutorialController : MonoBehaviour
 {
-    [SerializeField] Tutorial currentTutorial;
+    public Tutorial currentTutorial;
+    [SerializeField] ObjectManager objectManager;
     [SerializeField] bool startTutorial = true;
     
     
     private LanguageManager languageManager;
     private int currentStepIndex;
     private bool isStepCompleted;
-    private int score;
     private bool isPaused;
     private GameObject prefabStep;
     private AudioSource audioSource;
@@ -27,12 +27,24 @@ public class TutorialController : MonoBehaviour
     {
         actors = new List<Actor>();
 
+
+        foreach (TutorialStep step in currentTutorial.steps)
+        {
+            foreach (Actor item in step.actors)
+            {
+                if (!actors.Contains(item))
+                {
+                    actors.Add(item);
+                }
+            }
+        }
+
+
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
  
         currentStepIndex = 0;
         isStepCompleted = false;
-        score = 0;
         isPaused = false;
 
        languageManager = currentTutorial.languageManager;
@@ -66,6 +78,16 @@ public class TutorialController : MonoBehaviour
             prefabStep.GetComponent<ActionStep>().tutorialController = this;
             if(reset)
                 prefabStep.GetComponent<ActionStep>().ResetStep(step.actors);
+            else
+            {
+                foreach (Actor actorInStep in step.actors)
+                {
+                    if (actors.Contains(actorInStep)) 
+                        objectManager.Active(actorInStep.enumIndexItem);
+                    else
+                        objectManager.Desactive(actorInStep.enumIndexItem);   
+                }
+            }
         }
 
         if (step.audio)
@@ -100,7 +122,6 @@ public class TutorialController : MonoBehaviour
 
         if (currentTutorial.steps[currentStepIndex].completionCondition == CompletionCondition.ActionBased)
         {
-                score++;
                 isStepCompleted = true;
                 NextStep();
         }
@@ -132,6 +153,8 @@ public class TutorialController : MonoBehaviour
     void NextStep()
     {
 
+        Debug.Log("next");
+
         if (!isStepCompleted || audioSource.isPlaying)
         {
             Invoke("NextStep", 1);
@@ -149,14 +172,16 @@ public class TutorialController : MonoBehaviour
             {
 
                 ShowStep(currentStepIndex);
+                isStepCompleted = false;
             }
             else
             {
                 Debug.Log("Tutorial completed!");
                 currentStepIndex = 0;
+                isStepCompleted = true;
             }
 
-            isStepCompleted = false;
+            
         }
     }
 
@@ -165,13 +190,18 @@ public class TutorialController : MonoBehaviour
         if (indexStep < 0) return;
         if (indexStep >= currentTutorial.steps.Length) return;
 
-        currentStepIndex = indexStep;
-
-        ShowStep(currentStepIndex, true);
+        currentStepIndex = indexStep-1;
+        audioSource.Stop();
+        NextStep();
     }
 
     public void RestartStep()
     {
-        ShowStep(currentStepIndex,true);
+        if (currentStepIndex <= 0) currentStepIndex = 1;
+        if (currentStepIndex > currentTutorial.steps.Length) currentStepIndex = currentTutorial.steps.Length;
+
+        currentStepIndex--;
+        audioSource.Stop();
+        NextStep();
     }
 }

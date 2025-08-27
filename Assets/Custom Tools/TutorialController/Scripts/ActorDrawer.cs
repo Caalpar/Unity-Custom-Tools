@@ -14,6 +14,9 @@ public class ActorDrawer : PropertyDrawer
         SerializedProperty enumTypeNameProp = property.FindPropertyRelative("enumTypeName");
         string enumTypeName = enumTypeNameProp.stringValue;
 
+        SerializedProperty enumTypeIndexProp = property.FindPropertyRelative("enumIndexItem");
+        int enumIndexValue = enumTypeIndexProp.intValue;
+
         Type enumType = null;
         if (!string.IsNullOrEmpty(enumTypeName))
         {
@@ -58,6 +61,7 @@ public class ActorDrawer : PropertyDrawer
         {
             objectIDProp.stringValue = enumValues[newIndex];
         }
+        enumTypeIndexProp.intValue = newIndex;
 
         // Dibuja el resto de las propiedades de la clase Actor
         position.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;

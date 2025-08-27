@@ -13,17 +13,12 @@ MonoBehaviour:
   m_Name: New_Step_Step_2
   m_EditorClassIdentifier: 
   audioEnumTypeName: 
-  audioEnumValueName: Off
-  selectedObjectEnumName: ITEM_OBJECTMANAGER
+  audioEnumValueName: 
+  selectedObjectEnumName: 
   selectedAudioEnumIndex: 0
   selectedObjectEnumIndex: 0
   audio: 1
-  prefabStep: {fileID: 4408075548142108539, guid: 2101e1a9ba580354e884d5a1d7f61f0b, type: 3}
+  prefabStep: {fileID: 5641260448680366082, guid: 2101e1a9ba580354e884d5a1d7f61f0b, type: 3}
   stepDuration: 0
   completionCondition: 0
-  actors:
-  - enumTypeName: ITEM_OBJECTMANAGER
-    objectID: Cube
-    alwaysActive: 0
-    targetPosition: {x: 0, y: 0, z: 0}
-    targetRotation: {x: 0, y: 0, z: 0, w: 0}
+  actors: []

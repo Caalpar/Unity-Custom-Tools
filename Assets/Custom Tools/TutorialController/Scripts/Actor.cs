@@ -8,6 +8,10 @@ public class Actor
     [HideInInspector] // Oculta este campo del Inspector normal
     public string enumTypeName;
 
+    //[HideInInspector] // Oculta este campo del Inspector normal
+    public int enumIndexItem;
+
+
     // Aquí ya tienes el atributo, que es el que usaremos en el PropertyDrawer
     public string objectID;
 
