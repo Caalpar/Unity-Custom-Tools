@@ -10,19 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e584679e23f3b044aaf16df5af855f0, type: 3}
-  m_Name: On_Step_2
+  m_Name: New_Step_Step_4
   m_EditorClassIdentifier: 
+  audioEnumTypeName: 
+  audioEnumValueName: On
+  selectedObjectEnumName: ITEM_OBJECTMANAGER
+  selectedAudioEnumIndex: 0
+  selectedObjectEnumIndex: 0
   audio: 1
-  audioIndex: 0
-  prefabStep: {fileID: 4560784326762749110, guid: 846823905e9c34a4885e70f16bd16847, type: 3}
+  prefabStep: {fileID: 1997811858023856785, guid: 1549ca312327c4e4dbf03610aaf2fdce, type: 3}
   stepDuration: 0
   completionCondition: 0
   actors:
-  - enumTypeName: ITEM_TUTORIALCONTROLLER
-    objectID: CARRERA
+  - enumTypeName: ITEM_OBJECTMANAGER
+    objectID: Cube
+    alwaysActive: 0
     targetPosition: {x: 0, y: 0, z: 0}
     targetRotation: {x: 0, y: 0, z: 0, w: 0}
-  - enumTypeName: LANGUAGUE_AUDIO_LANGUAGEMANAGER
-    objectID: On
+  - enumTypeName: ITEM_OBJECTMANAGER
+    objectID: Sphere
+    alwaysActive: 0
+    targetPosition: {x: 0, y: 0, z: 0}
+    targetRotation: {x: 0, y: 0, z: 0, w: 0}
+  - enumTypeName: ITEM_OBJECTMANAGER
+    objectID: Capsule
+    alwaysActive: 0
     targetPosition: {x: 0, y: 0, z: 0}
     targetRotation: {x: 0, y: 0, z: 0, w: 0}

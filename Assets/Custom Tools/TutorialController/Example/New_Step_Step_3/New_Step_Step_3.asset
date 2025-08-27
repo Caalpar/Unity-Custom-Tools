@@ -12,15 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e584679e23f3b044aaf16df5af855f0, type: 3}
   m_Name: New_Step_Step_3
   m_EditorClassIdentifier: 
-  audio: 1
-  audioIndex: 0
   audioEnumTypeName: 
-  audioEnumValueName: 
-  prefabStep: {fileID: 177470847116837508, guid: c04affed14797254e80f881f6bb758f2, type: 3}
+  audioEnumValueName: UnitytoolSpanish
+  selectedObjectEnumName: ITEM_TUTORIALCONTROLLER
+  selectedAudioEnumIndex: 0
+  selectedObjectEnumIndex: 1
+  audio: 1
+  prefabStep: {fileID: 8239830139338522502, guid: c04affed14797254e80f881f6bb758f2, type: 3}
   stepDuration: 0
   completionCondition: 0
   actors:
   - enumTypeName: ITEM_TUTORIALCONTROLLER
     objectID: CARRERA
+    alwaysActive: 0
+    targetPosition: {x: 0, y: 0, z: 0}
+    targetRotation: {x: 0, y: 0, z: 0, w: 0}
+  - enumTypeName: ITEM_TUTORIALCONTROLLER
+    objectID: Environment
+    alwaysActive: 0
     targetPosition: {x: 0, y: 0, z: 0}
     targetRotation: {x: 0, y: 0, z: 0, w: 0}

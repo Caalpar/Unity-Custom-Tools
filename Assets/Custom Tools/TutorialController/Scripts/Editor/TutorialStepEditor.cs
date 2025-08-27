@@ -91,16 +91,37 @@ public class TutorialStepEditor : Editor
 
         DrawPropertiesExcluding(serializedObject, "m_Script", "actors");
 
+        TutorialStep tutorialStep = (TutorialStep)target;
+
+      
+        selectedAudioValueIndex = tutorialStep.AudioIndex;
+        selectedAudioEnumIndex = tutorialStep.selectedAudioEnumIndex;
+        selectedObjectEnumIndex = tutorialStep.selectedObjectEnumIndex;
+        selectedObjectEnumName = tutorialStep.selectedObjectEnumName;
+
+
+        if (tutorialStep.audioEnumTypeName != null)
+            selectedAudioEnumName = tutorialStep.audioEnumTypeName;
+
         // ➡️ Paso 5: Dibujamos el primer selector para los enums de "EnumsObjectManager"
         if (objectEnums.Length > 0)
         {
             string[] enumNames = objectEnums.Select(t => t.Name).ToArray();
             int newIndex = EditorGUILayout.Popup("Select Object Enum", selectedObjectEnumIndex, enumNames);
+
+            if(selectedObjectEnumName == "")
+            {
+                selectedObjectEnumName = enumNames[newIndex];
+                tutorialStep.selectedObjectEnumName = selectedObjectEnumName;
+            }
+
             if (newIndex != selectedObjectEnumIndex)
             {
                 selectedObjectEnumIndex = newIndex;
                 selectedObjectEnumName = enumNames[newIndex];
+                tutorialStep.selectedObjectEnumName = selectedObjectEnumName;
                 selectedObjectEnumType = objectEnums[newIndex];
+                tutorialStep.selectedObjectEnumIndex = selectedObjectEnumIndex;
             }
         }
         else
@@ -119,6 +140,7 @@ public class TutorialStepEditor : Editor
                 selectedAudioEnumIndex = newAudioIndex;
                 selectedAudioEnumName = audioEnumNames[newAudioIndex];
                 selectedAudioEnumType = audioEnums[newAudioIndex];
+                tutorialStep.selectedAudioEnumIndex = selectedAudioEnumIndex;
 
                 // Reinicia el índice del valor del audio cuando cambia el tipo de enum
                 selectedAudioValueIndex = 0;
@@ -134,7 +156,7 @@ public class TutorialStepEditor : Editor
                 selectedAudioValueIndex = EditorGUILayout.Popup("Audio Value", selectedAudioValueIndex, audioValues);
 
                 // Guarda el valor seleccionado en el ScriptableObject
-                TutorialStep tutorialStep = (TutorialStep)target;
+             
                 tutorialStep.audioEnumTypeName = selectedAudioEnumName;
                 tutorialStep.AudioIndex = selectedAudioValueIndex;
                 tutorialStep.audioEnumValueName = audioValues[selectedAudioValueIndex];

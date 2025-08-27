@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: LanguageTest
   m_EditorClassIdentifier: 
   _languagesStrings:
-  - {fileID: 11400000, guid: 8467e96c009a09f4b97b33e91e977598, type: 2}
+  - {fileID: 11400000, guid: 84b4353e7905a5143aed75449ad8bef7, type: 2}
   _languageType: 1

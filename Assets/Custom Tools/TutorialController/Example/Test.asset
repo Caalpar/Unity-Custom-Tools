@@ -9,8 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17bec72e14c03aa43aaf9f9be39d4a9c, type: 3}
-  m_Name: Tutorial
+  m_Script: {fileID: 11500000, guid: fb99c29cbb711624ab1db3e9fb82485b, type: 3}
+  m_Name: Test
   m_EditorClassIdentifier: 
-  languageManager: {fileID: 11400000, guid: 22d31764cb2e18d48abc0e1db1a0341f, type: 2}
-  steps: []
+  LanguageType: 0
+  words:
+  - hola
+  - chau
+  - adios
+  - perro
+  - gato
+  - alto
+  - lento
+  audios: []

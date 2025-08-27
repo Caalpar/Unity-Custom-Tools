@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e584679e23f3b044aaf16df5af855f0, type: 3}
-  m_Name: New_Step_Step_6
+  m_Name: New_Step_Step_2
   m_EditorClassIdentifier: 
+  audioEnumTypeName: 
+  audioEnumValueName: Off
+  selectedObjectEnumName: ITEM_OBJECTMANAGER
+  selectedAudioEnumIndex: 0
+  selectedObjectEnumIndex: 0
   audio: 1
-  audioIndex: 0
-  audioEnumTypeName: LANGUAGUE_AUDIO_LANGUAGEMANAGER
-  audioEnumValueName: 
-  prefabStep: {fileID: 0}
+  prefabStep: {fileID: 4408075548142108539, guid: 2101e1a9ba580354e884d5a1d7f61f0b, type: 3}
   stepDuration: 0
-  completionCondition: 1
+  completionCondition: 0
   actors:
-  - enumTypeName: 
-    objectID: 
+  - enumTypeName: ITEM_OBJECTMANAGER
+    objectID: Cube
+    alwaysActive: 0
     targetPosition: {x: 0, y: 0, z: 0}
     targetRotation: {x: 0, y: 0, z: 0, w: 0}

@@ -19,6 +19,12 @@ public class TutorialStep : ScriptableObject
     public string audioEnumTypeName;
     [HideInInspector]
     public string audioEnumValueName;
+    [HideInInspector]
+    public string selectedObjectEnumName;
+    [HideInInspector]
+    public int selectedAudioEnumIndex;
+    [HideInInspector]
+    public int selectedObjectEnumIndex;
 
     public bool audio= true;
     public GameObject prefabStep;

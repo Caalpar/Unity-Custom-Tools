@@ -63,10 +63,14 @@ public class ActorDrawer : PropertyDrawer
         position.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
         SerializedProperty posProp = property.FindPropertyRelative("targetPosition");
         EditorGUI.PropertyField(position, posProp, true);
+        
         position.y += EditorGUI.GetPropertyHeight(posProp, true) + EditorGUIUtility.standardVerticalSpacing;
-
         SerializedProperty rotProp = property.FindPropertyRelative("targetRotation");
         EditorGUI.PropertyField(position, rotProp, true);
+
+        position.y += EditorGUI.GetPropertyHeight(posProp, true) + EditorGUIUtility.standardVerticalSpacing;
+        SerializedProperty alwaysProp = property.FindPropertyRelative("alwaysActive");
+        EditorGUI.PropertyField(position, alwaysProp, true);
 
         EditorGUI.EndProperty();
     }
@@ -77,6 +81,7 @@ public class ActorDrawer : PropertyDrawer
         float height = EditorGUIUtility.singleLineHeight;
         height += EditorGUI.GetPropertyHeight(property.FindPropertyRelative("targetPosition"), true) + EditorGUIUtility.standardVerticalSpacing;
         height += EditorGUI.GetPropertyHeight(property.FindPropertyRelative("targetRotation"), true) + EditorGUIUtility.standardVerticalSpacing;
+        height += EditorGUI.GetPropertyHeight(property.FindPropertyRelative("alwaysActive"), true) + EditorGUIUtility.standardVerticalSpacing;
         return height;
     }
 }

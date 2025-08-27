@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e584679e23f3b044aaf16df5af855f0, type: 3}
   m_Name: New_Step_Step_5
   m_EditorClassIdentifier: 
+  audioEnumTypeName: 
+  audioEnumValueName: 
+  selectedObjectEnumName: 
+  selectedAudioEnumIndex: 0
+  selectedObjectEnumIndex: 0
   audio: 1
-  audioIndex: 0
-  audioEnumTypeName: LANGUAGUE_AUDIO_LANGUAGETEST
-  audioEnumValueName: On
-  prefabStep: {fileID: 2358333232800916108, guid: 8bcc9123d255d8740acad300eb658c80, type: 3}
+  prefabStep: {fileID: 1719318497781241399, guid: 8bcc9123d255d8740acad300eb658c80, type: 3}
   stepDuration: 0
   completionCondition: 0
-  actors:
-  - enumTypeName: ITEM_TUTORIALCONTROLLER
-    objectID: CARRERA
-    targetPosition: {x: 0, y: 0, z: 0}
-    targetRotation: {x: 0, y: 0, z: 0, w: 0}
+  actors: []
