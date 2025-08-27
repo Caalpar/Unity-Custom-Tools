@@ -8,12 +8,15 @@ using TMPro;
 public class SetText : MonoBehaviour
 {
     int index;
-    [SerializeField] LanguageManager languageManager;
-
-    [SerializeField] TextMeshProUGUI textUI;
+    public LanguageManager languageManager;
+   
+    TextMeshProUGUI textUI;
     TextMeshPro text;
 
     public int Index { set { index = value; } get { return index; } }
+    public string SelectedTextEnumName = "";
+    public int SelectedTextEnumValue = 0;
+
     void Awake()
     {
         UpdateText();
@@ -67,7 +70,7 @@ public class SetText : MonoBehaviour
 
     public void UpdateText()
     {
-        SetNewText(index);
+        SetNewText(SelectedTextEnumValue);
     }
 
 }
