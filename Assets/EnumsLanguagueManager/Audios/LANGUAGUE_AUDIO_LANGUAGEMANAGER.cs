@@ -12,4 +12,5 @@ public enum LANGUAGUE_AUDIO_LANGUAGEMANAGER
     N_10SpanishTakeSteeringWheel = 9,
     N_11SpanishRemoveBrake = 10,
     N_12Spanishenjoytheride = 11,
+    N_13SpanishAcelerateReverse = 12,
 }
