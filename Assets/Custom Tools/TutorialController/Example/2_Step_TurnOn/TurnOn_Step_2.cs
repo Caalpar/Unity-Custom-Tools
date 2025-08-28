@@ -16,9 +16,8 @@ public class TurnOn_Step_2 : ActionStep
             NextStep();
         
     }
-    public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial)
+    public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial, StepState stepState)
     {
-        base.StartStep(actorsInStep, actorsInTutorial);
-       // carController.onOffController.TurningOffCar();
+        base.StartStep(actorsInStep, actorsInTutorial, stepState);
     }
 }

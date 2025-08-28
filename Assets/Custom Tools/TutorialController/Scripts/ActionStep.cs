@@ -73,7 +73,7 @@ public abstract class ActionStep : MonoBehaviour
     }
 
 
-    public virtual void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial)
+    public virtual void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial, StepState stepState)
     {
         for (int i = 0; i < actorsInTutorial.Length; i++)
         {

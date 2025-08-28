@@ -16,8 +16,8 @@ public class Down_Lever_Step_6 : ActionStep
         if (carController.transmisión == -1)
             NextStep();
     }
-    public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial)
+    public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial, StepState stepState)
     {
-        base.StartStep(actorsInStep, actorsInTutorial);
+        base.StartStep(actorsInStep, actorsInTutorial, stepState);
     }
 }

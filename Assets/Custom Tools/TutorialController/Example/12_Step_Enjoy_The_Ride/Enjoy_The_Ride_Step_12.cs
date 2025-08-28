@@ -12,8 +12,8 @@ public class Enjoy_The_Ride_Step_12 : ActionStep
     {
 
     }
-    public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial)
+    public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial, StepState stepState)
     {
-        base.StartStep(actorsInStep, actorsInTutorial);
+        base.StartStep(actorsInStep, actorsInTutorial, stepState);
     }
 }

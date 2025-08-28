@@ -10,8 +10,8 @@ public class TutorialController : MonoBehaviour
     public Tutorial currentTutorial;
     [SerializeField] ObjectManager objectManager;
     [SerializeField] bool startTutorial = true;
-    
-    
+
+    private StepState stepState;
     private LanguageManager languageManager;
     private int currentStepIndex;
     private bool isStepCompleted;
@@ -77,18 +77,14 @@ public class TutorialController : MonoBehaviour
             prefabStep = Instantiate(step.prefabStep, transform.position, Quaternion.identity);
             ActionStep action = prefabStep.GetComponent<ActionStep>();
             action.tutorialController = this;
-            action.StartStep(step.actors, actors.ToArray());   
+            action.StartStep(step.actors, actors.ToArray(),stepState);   
         }
 
         if (step.audio)
         {
-            AudioClip clip = null;
-
-
             if(languageManager != null)
             {
-   
-                clip = languageManager.GetAudio(step.audioIndex);
+                AudioClip clip = languageManager.GetAudio(step.audioIndex);
 
                 if (clip != null)
                 {
@@ -102,6 +98,7 @@ public class TutorialController : MonoBehaviour
         {
             StartCoroutine(WaitAndCompleteStep(step.stepDuration));
         }
+        stepState = StepState.CURRENT;
     }
 
     IEnumerator WaitAndCompleteStep(float duration)
@@ -142,8 +139,15 @@ public class TutorialController : MonoBehaviour
     public void ResumeTutorial(int setStep = 0)
     {
         currentStepIndex += setStep;
+        
+        if (currentStepIndex < 0) return;
+        if (currentStepIndex >= currentTutorial.steps.Length) return;
+
         isPaused = false;
-        ShowStep(currentStepIndex);
+        audioSource.Stop();
+        isStepCompleted = true;
+        stepState = StepState.RESUME;
+        NextStep();
     }
 
     void NextStep()
@@ -186,6 +190,8 @@ public class TutorialController : MonoBehaviour
 
         currentStepIndex = indexStep-1;
         audioSource.Stop();
+        isStepCompleted = true;
+        stepState = StepState.SELECT;
         NextStep();
     }
 
@@ -196,6 +202,7 @@ public class TutorialController : MonoBehaviour
 
         currentStepIndex--;
         audioSource.Stop();
+        stepState = StepState.REPEAT;
         NextStep();
     }
 }
