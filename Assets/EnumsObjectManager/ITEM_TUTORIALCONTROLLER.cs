@@ -13,4 +13,5 @@ public enum ITEM_TUTORIALCONTROLLER
     GhostLeftHand = 10,
     GhostRightHand = 11,
     CustomActionGrab = 12,
+    FadeEffect = 13,
 }

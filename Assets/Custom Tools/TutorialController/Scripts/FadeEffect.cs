@@ -12,7 +12,7 @@ public class FadeEffect : MonoBehaviour
 
     private void Start()
     {
-        FadeInOut(null);
+      //  FadeInOut(null);
     }
 
     public void FadeInOut(Action action)

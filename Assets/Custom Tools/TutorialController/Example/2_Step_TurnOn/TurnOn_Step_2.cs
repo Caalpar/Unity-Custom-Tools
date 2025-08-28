@@ -18,6 +18,24 @@ public class TurnOn_Step_2 : ActionStep
     }
     public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial, StepState stepState)
     {
-        base.StartStep(actorsInStep, actorsInTutorial, stepState);
+        FadeEffect fadeInOut = GetComponentFrom<FadeEffect>(ITEM_TUTORIALCONTROLLER.FadeEffect);
+
+        switch (stepState)
+        {
+            case StepState.REPEAT:
+                break;
+            case StepState.CURRENT:
+                base.StartStep(actorsInStep, actorsInTutorial, stepState);
+                break;
+            case StepState.SELECT:
+                fadeInOut.FadeInOut(() => { base.StartStep(actorsInStep, actorsInTutorial, stepState); });
+                break;
+            case StepState.RESUME:
+                break;
+            default:
+
+                break;
+        }
+        
     }
 }
