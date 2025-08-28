@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e584679e23f3b044aaf16df5af855f0, type: 3}
   m_Name: 12_Step_Enjoy_The_Ride
   m_EditorClassIdentifier: 
+  audioIndex: 11
   audioEnumTypeName: 
-  audioEnumValueName: 
-  selectedObjectEnumName: 
+  audioEnumValueName: N_12Spanishenjoytheride
+  selectedObjectEnumName: ITEM_OBJECTMANAGER
   selectedAudioEnumIndex: 0
   selectedObjectEnumIndex: 0
   audio: 1

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e584679e23f3b044aaf16df5af855f0, type: 3}
   m_Name: 9_Step_TurnOff
   m_EditorClassIdentifier: 
+  audioIndex: 8
   audioEnumTypeName: 
   audioEnumValueName: N_9SpanishTurnOff
   selectedObjectEnumName: ITEM_TUTORIALCONTROLLER

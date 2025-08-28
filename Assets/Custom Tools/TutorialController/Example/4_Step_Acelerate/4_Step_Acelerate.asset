@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e584679e23f3b044aaf16df5af855f0, type: 3}
   m_Name: 4_Step_Acelerate
   m_EditorClassIdentifier: 
+  audioIndex: 3
   audioEnumTypeName: 
   audioEnumValueName: N_4SpanishAcelerate
   selectedObjectEnumName: ITEM_TUTORIALCONTROLLER

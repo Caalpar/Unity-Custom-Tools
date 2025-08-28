@@ -22,10 +22,22 @@ public class TutorialStepEditor : Editor
     private Type selectedAudioEnumType;
     private int selectedAudioValueIndex = 0;
 
+    private SerializedProperty selectedAudioEnumIndexProp;
+    private SerializedProperty audioEnumTypeNameProp;
+    private SerializedProperty audioEnumValueNameProp;
+    private SerializedProperty audioIndexProp;
+
+
+
     private int lastActorCount = 0;
 
     private void OnEnable()
     {
+        selectedAudioEnumIndexProp = serializedObject.FindProperty("selectedAudioEnumIndex");
+        audioEnumTypeNameProp = serializedObject.FindProperty("audioEnumTypeName");
+        audioEnumValueNameProp = serializedObject.FindProperty("audioEnumValueName");
+        audioIndexProp = serializedObject.FindProperty("audioIndex");
+
         // ➡️ Paso 1: Definimos las rutas de las carpetas
         string objectFolderPath = "Assets/EnumsObjectManager";
         string audioFolderPath = "Assets/EnumsLanguagueManager/Audios";
@@ -94,14 +106,14 @@ public class TutorialStepEditor : Editor
         TutorialStep tutorialStep = (TutorialStep)target;
 
       
-        selectedAudioValueIndex = tutorialStep.AudioIndex;
-        selectedAudioEnumIndex = tutorialStep.selectedAudioEnumIndex;
+        selectedAudioValueIndex = tutorialStep.audioIndex;
+        selectedAudioEnumIndex = tutorialStep.selectedAudioEnumIndex ;
         selectedObjectEnumIndex = tutorialStep.selectedObjectEnumIndex;
         selectedObjectEnumName = tutorialStep.selectedObjectEnumName;
 
 
-        if (tutorialStep.audioEnumTypeName != null)
-            selectedAudioEnumName = tutorialStep.audioEnumTypeName;
+        if (audioEnumTypeNameProp.stringValue != null)
+            selectedAudioEnumName = audioEnumTypeNameProp.stringValue;
 
         // ➡️ Paso 5: Dibujamos el primer selector para los enums de "EnumsObjectManager"
         if (objectEnums.Length > 0)
@@ -140,7 +152,7 @@ public class TutorialStepEditor : Editor
                 selectedAudioEnumIndex = newAudioIndex;
                 selectedAudioEnumName = audioEnumNames[newAudioIndex];
                 selectedAudioEnumType = audioEnums[newAudioIndex];
-                tutorialStep.selectedAudioEnumIndex = selectedAudioEnumIndex;
+                selectedAudioEnumIndexProp.intValue = selectedAudioEnumIndex;
 
                 // Reinicia el índice del valor del audio cuando cambia el tipo de enum
                 selectedAudioValueIndex = 0;
@@ -157,9 +169,9 @@ public class TutorialStepEditor : Editor
 
                 // Guarda el valor seleccionado en el ScriptableObject
              
-                tutorialStep.audioEnumTypeName = selectedAudioEnumName;
-                tutorialStep.AudioIndex = selectedAudioValueIndex;
-                tutorialStep.audioEnumValueName = audioValues[selectedAudioValueIndex];
+                audioEnumTypeNameProp.stringValue = selectedAudioEnumName;
+                audioIndexProp.intValue = selectedAudioValueIndex;
+                audioEnumValueNameProp.stringValue = audioValues[selectedAudioValueIndex];
             }
         }
         else

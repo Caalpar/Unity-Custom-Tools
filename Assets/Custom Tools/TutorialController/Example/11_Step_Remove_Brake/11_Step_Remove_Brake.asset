@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e584679e23f3b044aaf16df5af855f0, type: 3}
   m_Name: 11_Step_Remove_Brake
   m_EditorClassIdentifier: 
+  audioIndex: 10
   audioEnumTypeName: 
-  audioEnumValueName: N_1SpanishWelcome
+  audioEnumValueName: N_11SpanishRemoveBrake
   selectedObjectEnumName: ITEM_TUTORIALCONTROLLER
   selectedAudioEnumIndex: 0
   selectedObjectEnumIndex: 1

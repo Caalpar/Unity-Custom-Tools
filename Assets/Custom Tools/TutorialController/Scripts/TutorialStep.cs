@@ -10,8 +10,8 @@ public enum CompletionCondition
 [CreateAssetMenu(fileName = "TutorialStep", menuName = "Tutorial/TutorialStep")]
 public class TutorialStep : ScriptableObject
 {
-    
-    int audioIndex;
+    [HideInInspector]
+    public int audioIndex;
 
     public int AudioIndex { set { audioIndex = value; } get { return audioIndex; } }
     
