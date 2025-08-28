@@ -18,7 +18,7 @@ public class Acelerate_Reverse_Step_13 : ActionStep
         if (carController.torque > lastTorque && !isActive)
         {
             isActive = true;
-            NextStepWithDelay(5);
+            NextStep();
         }
     }
     public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial)
