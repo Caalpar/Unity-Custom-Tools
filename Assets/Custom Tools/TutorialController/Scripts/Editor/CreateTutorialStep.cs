@@ -93,7 +93,24 @@ public class {newAssetName} : ActionStep
 
     private static void CreateAssetsAfterCompilation(string newAssetPath, string prefabPath)
     {
-        string newAssetName = Path.GetFileNameWithoutExtension(newAssetPath);
+
+        Debug.Log("newAssetPath:" + newAssetPath);
+        Debug.Log("prefabPath:" + prefabPath);
+
+        string []newAssetNameArray = Path.GetFileNameWithoutExtension(newAssetPath).Split("_");
+
+        string newAssetName = "";
+
+        for (int i = 2; i < newAssetNameArray.Length; i++)
+        {
+            newAssetName += newAssetNameArray[i] + "_";
+        }
+
+        newAssetName += newAssetNameArray[1] + "_" + newAssetNameArray[0];
+
+
+
+        Debug.Log("newAssetName:" + newAssetName);
 
         System.Type scriptType = System.Type.GetType($"{newAssetName}, Assembly-CSharp");
         if (scriptType == null)

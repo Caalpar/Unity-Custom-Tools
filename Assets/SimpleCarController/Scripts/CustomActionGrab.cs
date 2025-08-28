@@ -10,8 +10,7 @@ public class CustomActionGrab : MonoBehaviour
     [SerializeField]
     Grabbable grabbable;
 
-    [SerializeField]
-    UnityEvent<PointerEvent> Select, Move, Cancel, Unselect, Hover, Unhover;
+    public UnityEvent<PointerEvent> Select, Move, Cancel, Unselect, Hover, Unhover;
 
     private void OnEnable()
     {

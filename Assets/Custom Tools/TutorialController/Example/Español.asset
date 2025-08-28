@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb99c29cbb711624ab1db3e9fb82485b, type: 3}
+  m_Name: "Espa\xF1ol"
+  m_EditorClassIdentifier: 
+  LanguageType: 1
+  words:
+  - Bienvenida
+  - "\xA1Hola! En este tutorial, te ense\xF1aremos a manejar un auto virtual usando
+    solo tus manos con el hand tracking de los Oculus Quest. Prep\xE1rate para una
+    experiencia de manejo muy inmersiva."
+  audios:
+  - {fileID: 8300000, guid: 35cf6ceaecf60c543b9aecfc03a6ce90, type: 3}
+  - {fileID: 8300000, guid: 7da388d109a34534e92444b8d49c04d0, type: 3}
+  - {fileID: 8300000, guid: 6bf5628be2269e14ab704e6cd2a97af8, type: 3}
+  - {fileID: 8300000, guid: 9ea896f845994f147bf815d66bc77c30, type: 3}
+  - {fileID: 8300000, guid: c26f7fb5cb0c2a948b59fda6e32bbfe7, type: 3}
+  - {fileID: 8300000, guid: dbaa1010448640449b8713acaa676051, type: 3}
+  - {fileID: 8300000, guid: ca92f46ad72d37a49aa97f5e2863347f, type: 3}
+  - {fileID: 8300000, guid: 8cc8da2d86ca6534d9ef798481131676, type: 3}
+  - {fileID: 8300000, guid: 0d85bf91a851fbc40ad1836c8457e177, type: 3}
+  - {fileID: 8300000, guid: ed9b715f543b9a64dbd5da48f4e23e30, type: 3}
+  - {fileID: 8300000, guid: 23123a9c2d58aab4ea57fa49b81367b5, type: 3}
+  - {fileID: 8300000, guid: 2e9c72413a6db9248889a87c9f3b32e6, type: 3}

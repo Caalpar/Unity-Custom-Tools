@@ -27,7 +27,7 @@ public class OnOffController : MonoBehaviour
     }
 
 
-    public void TurningOnForklift(bool tryToTurningOn) 
+    public void TurningOnCar(bool tryToTurningOn) 
     {
         if (this.IsOn) {
             time = 0;
@@ -53,7 +53,7 @@ public class OnOffController : MonoBehaviour
             onAudio.Stop();
         }
     }
-    public void TurningOffForklift()
+    public void TurningOffCar()
     {
         if (!this.IsOn)     
             return;

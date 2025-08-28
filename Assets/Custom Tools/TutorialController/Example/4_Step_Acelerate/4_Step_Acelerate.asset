@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e584679e23f3b044aaf16df5af855f0, type: 3}
+  m_Name: 4_Step_Acelerate
+  m_EditorClassIdentifier: 
+  audioEnumTypeName: 
+  audioEnumValueName: N_4SpanishAcelerate
+  selectedObjectEnumName: ITEM_TUTORIALCONTROLLER
+  selectedAudioEnumIndex: 0
+  selectedObjectEnumIndex: 1
+  audio: 1
+  prefabStep: {fileID: 3757876214661446429, guid: 1550205caa03d6243b17c88b998f8b50, type: 3}
+  stepDuration: 0
+  completionCondition: 1
+  actors:
+  - enumTypeName: ITEM_TUTORIALCONTROLLER
+    enumIndexItem: 3
+    objectID: ArrowAcelerator
+    alwaysActive: 0
+    targetPosition: {x: 0, y: 0, z: 0}
+    targetRotation: {x: 0, y: 0, z: 0, w: 0}

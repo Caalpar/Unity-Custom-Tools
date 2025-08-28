@@ -24,10 +24,10 @@ public class InputsVR : MonoBehaviour
 
         [SerializeField] Transform lever;
         float leverAccumulatedRotationZ = 0f;
-        float leverCurrentRotationZ;
-        float leverDeltaRotation;
-        float leverLastRotationZ;
-        int leverAngle;
+        float leverCurrentRotationZ=0;
+        float leverDeltaRotation=0;
+        float leverLastRotationZ=0;
+        int leverAngle=0;
 
     [Header("Brake")]
 
@@ -40,7 +40,7 @@ public class InputsVR : MonoBehaviour
 
     float acelerate = 0;
 
-    private void Start()
+    private void Awake()
     {
 
         swInitialRot = steering_wheel.localRotation;
@@ -52,14 +52,19 @@ public class InputsVR : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        leverAngle = 0;
+    }
+
     private void FixedUpdate()
     {
 
         if (tryOn)
-            carController.onOffController.TurningOnForklift(tryOn);
+            carController.onOffController.TurningOnCar(tryOn);
         
         SterringWheelInput();
-        LeverInput();
+      //  LeverInput();
         BrakeInput();
 
         carController.UpdateAxel(acelerate, -leverAngle, -steeringAngle, brakeAngle);
@@ -209,5 +214,6 @@ public class InputsVR : MonoBehaviour
         // (valor - rango_entrada_min) * (rango_salida_max - rango_salida_min) / (rango_entrada_max - rango_entrada_min) + rango_salida_min
         return (value - fromMin) * (toMax - toMin) / (fromMax - fromMin) + toMin;
     }
+
 
 }

@@ -61,7 +61,14 @@ public class CarController : MonoBehaviour
 
     public void UpdateAxel(float motorTorque, int march, float steeringAngle, float motorBreak)
     {
-        if (!onOffController.IsOn) return;   
+        if (!onOffController.IsOn) return;
+
+        if (!debug)
+        {
+            transmisión = march;
+            mBreak = motorBreak;
+            torque = motorTorque;
+        }
 
         for (int i = 0; i < axleInfos.Count; i++)
         {

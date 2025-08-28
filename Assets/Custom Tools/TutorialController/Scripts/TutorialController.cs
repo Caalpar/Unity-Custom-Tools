@@ -67,7 +67,7 @@ public class TutorialController : MonoBehaviour
             return;
         }
 
-        if (isPaused) return;
+        if (isPaused) return; 
 
         isRunStep = true;
         TutorialStep step = currentTutorial.steps[index];
@@ -84,8 +84,10 @@ public class TutorialController : MonoBehaviour
         {
             AudioClip clip = null;
 
+
             if(languageManager != null)
             {
+   
                 clip = languageManager.GetAudio(step.AudioIndex);
 
                 if (clip != null)
@@ -146,8 +148,6 @@ public class TutorialController : MonoBehaviour
 
     void NextStep()
     {
-
-        Debug.Log("next");
 
         if (!isStepCompleted || audioSource.isPlaying)
         {

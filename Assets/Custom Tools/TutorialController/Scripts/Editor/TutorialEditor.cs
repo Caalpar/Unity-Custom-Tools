@@ -54,9 +54,10 @@ public class TutorialEditor : Editor
         // Sanitizar el nombre para nombres de archivos válidos
         string sanitizedName = newStepName.Replace(" ", "_").Trim();
         string finalStepName = sanitizedName + "_Step_" + (currentTutorial.steps.Length + 1);
+        string finalStepNameDirectory = (currentTutorial.steps.Length + 1) + "_Step_" + sanitizedName;
 
         string parentDirectory = Path.GetDirectoryName(currentTutorialPath);
-        string newDirectoryPath = Path.Combine(parentDirectory, finalStepName);
+        string newDirectoryPath = Path.Combine(parentDirectory, finalStepNameDirectory);
 
         if (!Directory.Exists(newDirectoryPath))
         {
@@ -65,8 +66,8 @@ public class TutorialEditor : Editor
         }
 
         string scriptPath = Path.Combine(newDirectoryPath, finalStepName + ".cs");
-        string prefabPath = Path.Combine(newDirectoryPath, finalStepName + ".prefab");
-        string finalAssetPath = Path.Combine(newDirectoryPath, finalStepName + ".asset");
+        string prefabPath = Path.Combine(newDirectoryPath, finalStepNameDirectory + ".prefab");
+        string finalAssetPath = Path.Combine(newDirectoryPath, finalStepNameDirectory + ".asset");
 
         string scriptTemplate = $@"using UnityEngine;
 using System.Linq;

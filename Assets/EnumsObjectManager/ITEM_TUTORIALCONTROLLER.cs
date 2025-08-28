@@ -8,4 +8,9 @@ public enum ITEM_TUTORIALCONTROLLER
     ArrowLeverDown = 5,
     ArrowBreakUp = 6,
     ArrowBreakDown = 7,
+    Panel = 8,
+    SimpleCarController = 9,
+    GhostLeftHand = 10,
+    GhostRightHand = 11,
+    CustomActionGrab = 12,
 }
