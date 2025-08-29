@@ -8,6 +8,7 @@ public class TurnOn_Step_2 : ActionStep
     private void Start()
     {
         carController = GetComponentFrom<CarController>(ITEM_TUTORIALCONTROLLER.SimpleCarController);
+        RepeatAudio(3);
     }
 
     private void Update()

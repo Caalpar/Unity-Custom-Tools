@@ -24,6 +24,12 @@ public abstract class ActionStep : MonoBehaviour
         completed = false;
     }
 
+    public void RepeatAudio(float seconds)
+    {
+        if (tutorialController == null) return;
+        tutorialController.RepeatAudio(seconds);
+    }
+
     public T GetComponentFrom<T>(Enum value)
     {
         T data = objectsManager[value].GetComponent<T>();

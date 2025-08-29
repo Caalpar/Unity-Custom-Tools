@@ -19,7 +19,7 @@ public class Down_Lever_Step_6 : ActionStep
     public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial, StepState stepState)
     {
 
-        FadeEffect fadeInOut = GetComponentFrom<FadeEffect>(ITEM_TUTORIALCONTROLLER.FadeEffect);
+        base.StartStep(actorsInStep, actorsInTutorial, stepState);
 
         switch (stepState)
         {
@@ -35,7 +35,7 @@ public class Down_Lever_Step_6 : ActionStep
                 
                 break;
         }
-        fadeInOut.FadeInOut(()=> { base.StartStep(actorsInStep, actorsInTutorial, stepState); });
+   
 
         
 

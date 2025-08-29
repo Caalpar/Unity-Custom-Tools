@@ -18,7 +18,10 @@ public class TutorialController : MonoBehaviour
     private bool isPaused;
     private GameObject prefabStep;
     private AudioSource audioSource;
-    private List<Actor> actors; 
+    private AudioClip currentAudioClip;
+    private List<Actor> actors;
+
+    private Coroutine audioRepeatRoutine;
     public bool isRunStep {  get; private set; }
     public int currentStep { get { return currentStepIndex; } }
     public bool isAudioPlay { get {  return audioSource.isPlaying; } }
@@ -58,6 +61,25 @@ public class TutorialController : MonoBehaviour
         ShowStep(currentStepIndex);
     }
 
+    public void RepeatAudio(float seconds)
+    {
+        if(audioRepeatRoutine == null)
+        audioRepeatRoutine = StartCoroutine(RepeatAudioRutine(seconds));
+    }
+
+    IEnumerator RepeatAudioRutine(float seconds)
+    {
+        while (true)
+        {
+            if (languageManager != null && audioSource != null && currentAudioClip != null && !audioSource.isPlaying)
+            {
+                yield return new WaitForSeconds(seconds);
+                audioSource.PlayOneShot(currentAudioClip);
+            }
+            yield return null;
+        }
+    }
+
     void ShowStep(int index)
     {
 
@@ -84,11 +106,11 @@ public class TutorialController : MonoBehaviour
         {
             if(languageManager != null)
             {
-                AudioClip clip = languageManager.GetAudio(step.audioIndex);
+                currentAudioClip = languageManager.GetAudio(step.audioIndex);
 
-                if (clip != null)
+                if (currentAudioClip != null)
                 {
-                    audioSource.PlayOneShot(clip);
+                    audioSource.PlayOneShot(currentAudioClip);
                 }
             }
    
@@ -163,6 +185,12 @@ public class TutorialController : MonoBehaviour
             {
                 isRunStep = false;
                 Destroy(prefabStep);
+                if (audioRepeatRoutine != null)
+                {
+                    StopCoroutine(audioRepeatRoutine);
+                    audioRepeatRoutine = null;
+                }
+               
             }
 
             currentStepIndex++;
