@@ -1,48 +1,150 @@
+![Tutorial Controller Banner](./Assets/img/banner.png)
 
-# 🚗 Conducción de Auto Virtual con Hand Tracking
+# 🎮 Tutorial Controller para Unity
 
-Este es un proyecto demo desarrollado en **Unity** que permite al usuario conducir un auto virtual sin la necesidad de controles físicos. Toda la experiencia se maneja utilizando únicamente el **hand tracking** de las **Oculus Quest 3**.
+**Tutorial Controller** es una herramienta robusta y modular para **Unity** que te permite crear **tutoriales interactivos y personalizados** de forma sencilla.  
+Es ideal para **guiar a los jugadores** a través de nuevas mecánicas, interfaces de usuario o flujos de juego, asegurando que cada paso sea **claro** y **fácil de seguir**.
 
-## 🎥 Demostración del Proyecto
+---
 
-Mira este video para ver el proyecto en acción:
+## ✨ Características Principales
 
-![Video de demostración de nuestro auto virtual en funcionamiento](Assets/Video/HandTrakingCarVideo.gif)
+- 🧩 **Flujo guiado:** Define el orden de cada paso del tutorial.  
+- 🎭 **Activación automática de objetos:** Activa y desactiva **Actors** según el paso.  
+- 🖱️ **Detección de acciones:** Configura pasos que esperan clics, movimientos o interacciones.  
+- ⏱️ **Pasos por tiempo:** Define pasos que avanzan automáticamente después de un tiempo.  
+- 🔊 **Gestión de audio:** Asigna archivos de audio con repetición opcional para dar pistas.  
+- 🔗 **Modularidad:** Integración con **Object Manager** y **Language Manager**.  
+- ⚡ **Creación simplificada:** Genera nuevos tutoriales y pasos mediante **ScriptableObjects** con un clic.
 
------
+---
 
-## 🚀 Características Principales
+## 🛠️ Requisitos e Instalación
 
-  * **Control Intuitivo:** Conduce el auto simulando el movimiento de un volante con tus manos.
-  * **Aceleración y Freno:** Utiliza gestos simples para acelerar y frenar el vehículo.
-  * **Experiencia Inmersiva:** Navega por el entorno virtual de forma totalmente inmersiva gracias a las capacidades de las Oculus Quest 3.
+### **Requisitos**
+- Unity **2022.3** o superior.
+- Herramientas:  
+  - **Object Manager** https://github.com/Caalpar/Unity-Custom-Tools/tree/
+  - **Language Manager** https://github.com/Caalpar/Unity-Custom-Tools/tree/LanguagueObjectsManager 
 
------
+ **Objet Manager:**
 
-## 🛠️ Tecnologías Utilizadas
+  ![Objet Manager](./Assets/img/Objet%20Manager.jpg)
 
-  * **Unity:** Motor principal de desarrollo.
-  * **Oculus Integration SDK:** Para las funcionalidades de hand tracking y realidad virtual.
-  * **C\#:** Lenguaje de scripting para toda la lógica del proyecto.
+ **Languague Manager:**
 
------
+![Languague Manager](./Assets/img/Languague%20Manager.jpg)
 
-## 💡 Cómo Funciona
+ **Languague:**
 
-El proyecto utiliza el **Oculus Integration SDK** para capturar los movimientos de las manos. Gestos específicos se mapean a los controles del auto:
+![Languague](./Assets/img/Languague.jpg)
 
-  * **Dirección:** Rotar ambas manos en un movimiento circular, imitando un volante, controla la dirección del auto.
-  * **Aceleración:** Un gesto de empuje hacia adelante con una mano puede usarse para acelerar.
-  * **Frenado:** Un gesto específico, como un empuje hacia abajo o el cierre del puño, puede usarse para frenar el auto.
+### **Instalación**
+1. Clona este repositorio o descarga el `.zip`.
+2. Importa el paquete en tu proyecto de Unity.
+3. Asegúrate de que las dependencias (**Object Manager** y **Language Manager**) ya estén importadas.
 
-Este proyecto es una muestra del potencial de la **interacción natural en la realidad virtual**.
+> 💡 **Sugerencia:** Aquí podrías poner un **GIF** o **imagen** mostrando el proceso de instalación paso a paso.
 
------
+---
 
-## 📖 Cómo Empezar
+## 🚀 Cómo Empezar
 
-1.  Clona este repositorio.
-2.  Abre el proyecto en **Unity**.
-3.  Asegúrate de tener el último **Oculus Integration SDK** importado.
-4.  Compila el proyecto para las Oculus Quest 3.
-5.  ¡Disfruta del viaje\!
+### **1. Creación de un nuevo tutorial**
+- Haz **clic derecho** en tu carpeta de proyecto y selecciona:  
+  `Create > Tutorial > Tutorial`.
+- Se generará un **ScriptableObject** llamado `TutorialController`.
+
+  ![Tutorial Controller](./Assets/img/TutorialControllerCreate.jpg)
+
+### **2. Configuración de los pasos**
+En el **Inspector** del `TutorialController`:
+- Presiona **"Add Step"**.
+
+  <img src="./Assets/img/Add Step.jpg" alt="Add step" width="60%">
+
+- Se creará una nueva carpeta con:
+  - `Step` → **ScriptableObject** del paso.
+  - `StepPrefab` → Prefab asociado.
+  - `StepScript` → Script con la lógica.
+
+  <img src="./Assets/img/Step.jpg" alt="step" width="60%">
+
+Para cada paso puedes configurar:
+- **Repetir audio del paso:** Repite el aduio cada x segundos.  
+- **Tipo de paso:** Acción (espera al usuario) o Tiempo (automático).  
+- **Audio:** Asigna un clip desde **Language Manager**.  
+- **Actores:** Selecciona los objetos de **Object Manager**.
+  - (opcional) puedes definir posiscion y rotacion de los actores
+  y puedes usarlo en el metodo 
+  ```csharp
+  public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial,StepState stepState)
+  ```
+   **Configuracion del paso:**
+   
+  <img src="./Assets/img/Step Setting.jpg" alt="step setting" width="60%">
+### **3. Implementación de la lógica del paso**
+- Abre el script `StepScript`.
+- Este hereda de `ActionStep`.
+- Implementa la lógica dentro de `StartStep()` usando los métodos disponibles.
+
+  ```csharp
+      using System.Collections;
+      using System.Collections.Generic;
+      using UnityEngine;
+
+      public class Welcome_Step_1 : ActionStep
+      {
+          // Start is called before the first frame update
+          void Start()
+          {
+              
+          }
+
+          // Update is called once per frame
+          void Update()
+          {
+              
+          }
+
+          public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial,StepState stepState)
+          {
+              base.StartStep(actorsInStep, actorsInTutorial, stepState);
+          }
+      }
+        ```
+
+---
+
+## 🤖 Métodos Clave de `ActionStep`
+
+| Método                            | Descripción                                      | Ejemplo de uso |
+| --------------------------------- | ----------------------------------------------- | --------------- |
+| `NextStep()`                      | Avanza al siguiente paso.                       | `OnButtonClick.AddListener(NextStep);` |
+| `NextStepWithDelay(int seconds)`  | Avanza tras X segundos.                         | `StartCoroutine(WaitAndProceed(5));` |
+| `RepeatAudio(float seconds)`      | Repite el audio cada X segundos.                | `RepeatAudio(10f);` |
+| `Active(Enum value)`             | Activa un actor por su **Enum**.                | `Active(ActorsEnum.PlayerButton);` |
+| `Desactive(Enum value)`         | Desactiva un actor por su **Enum**.             | `Desactive(ActorsEnum.EnemyUI);` |
+| `GetComponentFrom<T>(Enum value)` | Obtiene un componente de un actor.              | `Button myButton = GetComponentFrom<Button>(ActorsEnum.Button_Play);` |
+| `this[Enum valor]`               | Accede directamente al **GameObject**.          | `GameObject player = this[ActorsEnum.Player];` |
+
+---
+
+## 🤝 Contribuciones
+
+¡Las contribuciones son bienvenidas!  
+Si encuentras un **bug** o tienes ideas para **mejorar la herramienta**:
+1. Abre un **issue**.
+2. Envía un **pull request**.
+
+---
+
+## 📄 Licencia
+Este proyecto está bajo la licencia **MIT**.  
+Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+---
+
+## 👨‍💻 Autor
+**Carlos Palombo**  
+[![GitHub](https://img.shields.io/badge/GitHub-CarlosPalombo-181717?style=flat&logo=github)](https://github.com/TorreSimulacion)
