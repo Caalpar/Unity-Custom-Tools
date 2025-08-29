@@ -116,15 +116,38 @@ Para cada paso puedes configurar:
 
 ---
 
-## 🤖 Métodos Clave de `ActionStep`
+## 🤖 Tutorial Controlle
+
+El **Tutorial controller** necesita la refernecia del  `Lenguague Manager ` y del  `Objet Manager `
+
+  <img src="./Assets/img/Tutorial controller prefab.jpg" alt="step setting" width="1000%">
+  
+### Métodos de Tutorial Controller
 
 | Método                            | Descripción                                      |
 | --------------------------------- | ----------------------------------------------- | 
+| `Play()`                      | Inicia el tutorial.                       |
 | `NextStep()`                      | Avanza al siguiente paso.                       |
-| `NextStepWithDelay(int seconds)`  | Avanza tras X segundos.                         | 
-| `RepeatAudio(float seconds)`      | Repite el audio cada X segundos.                | 
+| `RepeatAudio(float seconds)`                      | Repite el audio del paso actual cada x segundos.                       |
+| `SelectStep()`                      | Selecciona el paso que quieres ejecutar.                       |
+| `RestartStep()`  | Reincia el paso actual.                         |  
+| `PauseTutorial()`  | Pausa el tutorial.                         |  
+| `TryNextStep()`  |Chquea si puede avanzar y avanza al paso siguiente.                         | 
+| `NextStepWithDelay(int seconds)`  | Avanza tras X segundos.                         |  
+| `ResumeTutorial(int setStep = 0)` | retomar el tutorial en un paso x.              | 
+
+---
+
+## 🤖 Métodos de `ActionStep`
+
+puedes llamar a todos los pasos del tutorial controller desde un step, pero admas tienes estos metodos en cada step
+
+| Método                            | Descripción                                      |
+| --------------------------------- | ----------------------------------------------- | 
 | `Active(Enum value)`             | Activa un actor por su **Enum**.                | 
+| `Active(int index)`             | Activa un actor por su **Indice**.                | 
 | `Desactive(Enum value)`         | Desactiva un actor por su **Enum**.             | 
+| `Desactive(int index)`         | Desactiva un actor por su **Indice**.             | 
 | `GetComponentFrom<T>(Enum value)` | Obtiene un componente de un actor.              | 
 | `this[Enum valor]`               | Accede directamente al **GameObject**.          | 
 
