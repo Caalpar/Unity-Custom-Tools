@@ -74,7 +74,8 @@ public class TutorialController : MonoBehaviour
             if (languageManager != null && audioSource != null && currentAudioClip != null && !audioSource.isPlaying)
             {
                 yield return new WaitForSeconds(seconds);
-                audioSource.PlayOneShot(currentAudioClip);
+                if(!audioSource.isPlaying)
+                    audioSource.PlayOneShot(currentAudioClip);
             }
             yield return null;
         }
@@ -99,7 +100,11 @@ public class TutorialController : MonoBehaviour
             prefabStep = Instantiate(step.prefabStep, transform.position, Quaternion.identity);
             ActionStep action = prefabStep.GetComponent<ActionStep>();
             action.tutorialController = this;
-            action.StartStep(step.actors, actors.ToArray(),stepState);   
+            action.StartStep(step.actors, actors.ToArray(),stepState);
+            if (step.repeatAudio)
+            {
+                action.RepeatAudio(step.repeatAudioTime);
+            }
         }
 
         if (step.audio)

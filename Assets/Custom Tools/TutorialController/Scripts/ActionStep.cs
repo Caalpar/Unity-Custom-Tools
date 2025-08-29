@@ -22,6 +22,7 @@ public abstract class ActionStep : MonoBehaviour
     private void Start()
     {
         completed = false;
+
     }
 
     public void RepeatAudio(float seconds)

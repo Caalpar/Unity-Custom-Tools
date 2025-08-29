@@ -10,7 +10,6 @@ public class Acelerate_Step_4 : ActionStep
     {
         carController = GetComponentFrom<CarController>(ITEM_TUTORIALCONTROLLER.SimpleCarController);
         lastTorque = carController.torque;
-        RepeatAudio(3);
     }
 
 
