@@ -43,6 +43,9 @@ Clona o descarga este repositorio en la carpeta `Assets` de tu proyecto Unity.
 1.  Selecciona tu ScriptableObject `LanguageManager` en la ventana del Proyecto.
 2.  Arrastra y suelta tus ScriptableObjects `Language` en el array "Languages".
 3.  Establece el `Default Language` al idioma que quieras cargar inicialmente.
+4.  Botones `Create the enum text` y `Create the enum audio` 
+crea enums para tener mejor acceso de los textos y audios,
+toma como referencia el idioma que esta en la pocicion 0 del Languague Manager
 
      ![Config LanguagueManager](Assets/img/Tutorial1_3.jpg)
 
@@ -50,7 +53,8 @@ Clona o descarga este repositorio en la carpeta `Assets` de tu proyecto Unity.
 
 1.  Selecciona un ScriptableObject `Language` (por ejemplo, "Spanish").
 2.  En el Inspector, expande los arrays "Words" y "Audios".
-3.  **Fundamentalmente, asegúrate de que el índice para un texto/audio específico coincida en todos los idiomas.**
+3.  (Opcional) Puedes importar archivos csv.
+4.  **Fundamentalmente, asegúrate de que el índice para un texto/audio específico coincida en todos los idiomas.**
     * Ej: `Text Translations[0]` = "Hola Mundo" (Español)
     * `Text Translations[0]` = "Hello World" (Inglés)
     * `Audio Translations[0]` = `audio_hola_espanol.mp3`
@@ -62,9 +66,8 @@ Clona o descarga este repositorio en la carpeta `Assets` de tu proyecto Unity.
 
 * **Para Texto:**
     1.  Añade un componente `SetText` a tu GameObject `TextMeshProUGUI` o `UI.Text`.
-    2.  Asigna el índice de texto deseado de tus ScriptableObjects `Language`.
-    3.  Asigna el  `LanguageManager` que quieres usar.
-    4.  Asigna la referencia de tu `TextMeshProUGUI` o `UI.Text`.
+    2.  Asigna el  `LanguageManager` que quieres usar.
+    3.  Elige el texto que quieres mostrar.
 
     ![Config LanguagueText](Assets/img/Tutorial1_5.jpg)
 

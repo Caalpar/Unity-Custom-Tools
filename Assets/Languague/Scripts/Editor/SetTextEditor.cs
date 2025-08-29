@@ -37,7 +37,9 @@ public class SetTextEditor : Editor
 
         // **Paso 1: Dibujar las variables que quieres ver en el inspector**
         // Si no son nulas, dibújalas con EditorGUILayout.PropertyField()
-        if (languageManagerProp != null)
+        //   if (languageManagerProp != null)
+
+
         {
             EditorGUILayout.PropertyField(languageManagerProp);
         }
@@ -53,37 +55,40 @@ public class SetTextEditor : Editor
         string savedEnumName = targetScript.SelectedTextEnumName;
         int savedEnumValue = targetScript.SelectedTextEnumValue;
 
-        string ItemName = targetScript.languageManager.name.Replace(" ", "_");
-        ItemName = ItemName.Replace("-", "");
-        ItemName = ItemName.ToUpper();
-        ItemName = EnumCreator.EliminarCaracteresDuplicadosConsecutivos(ItemName, '_');
 
-        Debug.Log("LANGUAGUE_TEXT_" + ItemName);
+        if (targetScript.languageManager != null) { 
+            string ItemName = targetScript.languageManager.name.Replace(" ", "_");
+            ItemName = ItemName.Replace("-", "");
+            ItemName = ItemName.ToUpper();
+            ItemName = EnumCreator.EliminarCaracteresDuplicadosConsecutivos(ItemName, '_');
 
-        Type selectedEnumType = typeof(SetText).Assembly.GetType("LANGUAGUE_TEXT_"+ ItemName);
+            
 
-        Debug.Log("Name:" +selectedEnumType.Name);
+            Type selectedEnumType = typeof(SetText).Assembly.GetType("LANGUAGUE_TEXT_"+ ItemName);
 
-        if (selectedEnumType != null)
-        {
-            string[] audioValues = Enum.GetNames(selectedEnumType);
-            if (savedEnumValue >= audioValues.Length)
+   
+
+            if (selectedEnumType != null)
             {
-                savedEnumValue = 0;
-            }
-            int newEnumValueIndex = EditorGUILayout.Popup("Text Value", savedEnumValue, audioValues);
+                string[] audioValues = Enum.GetNames(selectedEnumType);
+                if (savedEnumValue >= audioValues.Length)
+                {
+                    savedEnumValue = 0;
+                }
+                int newEnumValueIndex = EditorGUILayout.Popup("Text Value", savedEnumValue, audioValues);
 
-            if (newEnumValueIndex != savedEnumValue)
-            {
-                targetScript.SelectedTextEnumValue = newEnumValueIndex;
-                EditorUtility.SetDirty(targetScript);
+                if (newEnumValueIndex != savedEnumValue)
+                {
+                    targetScript.SelectedTextEnumValue = newEnumValueIndex;
+                    EditorUtility.SetDirty(targetScript);
+                }
             }
-        }
-        else
-        {
-            EditorGUILayout.HelpBox("No se encontraron enums en la carpeta de Audios.", MessageType.Warning);
-        }
+            else
+            {
+                EditorGUILayout.HelpBox("No se encontraron enums en la carpeta de Audios.", MessageType.Warning);
+            }
         
+        }
         serializedObject.ApplyModifiedProperties();
     }
 }

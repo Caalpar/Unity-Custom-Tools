@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,5 +31,18 @@ public class PlayAudio : MonoBehaviour
             audioSource.Play();
         }
         
+    }
+
+    public void Play(Enum value)
+    {
+        int index = Convert.ToInt32(value);
+        if (audioSource.isPlaying)
+            audioSource.Pause();
+        AudioClip clip = languageManager.GetAudio(index);
+        if (clip != null)
+        {
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
     }
 }
