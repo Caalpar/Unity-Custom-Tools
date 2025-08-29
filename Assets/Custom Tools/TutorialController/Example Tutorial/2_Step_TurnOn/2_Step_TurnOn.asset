@@ -19,6 +19,8 @@ MonoBehaviour:
   selectedAudioEnumIndex: 0
   selectedObjectEnumIndex: 1
   audio: 1
+  repeatAudio: 1
+  repeatAudioTime: 3
   prefabStep: {fileID: 6859926272149383196, guid: 447aac0c80384e04ba486bc149175cd4, type: 3}
   stepDuration: 0
   completionCondition: 1
