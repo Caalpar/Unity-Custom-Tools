@@ -116,7 +116,7 @@ Para cada paso puedes configurar:
 
 ---
 
-## 🤖 Tutorial Controlle
+## 🤖 Tutorial Controller
 
 El **Tutorial controller** necesita la refernecia del `Objet Manager` y el **Tutorial** la referencia del **Languague Manager**
 
