@@ -41,8 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3101813778165736118}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9ae96cf0136f594caab3e6c37132157, type: 3}
+  m_Script: {fileID: 11500000, guid: 41afbf1fac52bd84b909a59a4bf48d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathFolder: GeneratedEnums
   listObjects: []

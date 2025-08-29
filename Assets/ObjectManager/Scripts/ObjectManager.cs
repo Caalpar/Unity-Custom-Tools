@@ -7,45 +7,39 @@ using UnityEngine.SceneManagement;
 public class ObjectManager : MonoBehaviour
 {
 
-    [SerializeField] string pathFolder = "GeneratedEnums";
+    string pathFolder = "EnumsObjectManager";
+    [HideInInspector]
+    public  GameObject[] listObjects;
 
-    [SerializeField] GameObject[] listObjects;
+
+    public int listObjectsAmount { get { return listObjects.Length; } }
 
     public void Active(Enum value)
     {
         int index = Convert.ToInt32(value);
-
-        if (index < 0) return;
-        if (index >= listObjects.Length) return;
-
-        listObjects[index].SetActive(true);
+        Active(index);
     }
-
-
 
     public void Active(int index)
     {
         if (index < 0) return;
         if (index >= listObjects.Length) return;
-
-        listObjects[index].SetActive(true);
+        if (!listObjects[index].gameObject.activeSelf)
+            listObjects[index].SetActive(true);
     }
 
     public void Desactive(int index)
     {
         if (index < 0) return;
         if (index >= listObjects.Length) return;
-
-        listObjects[index].SetActive(false);
+        if(listObjects[index].gameObject.activeSelf)
+            listObjects[index].SetActive(false);
     }
 
     public void Desactive(Enum value)
     {
         int index = Convert.ToInt32(value);
-        if (index < 0) return;
-        if (index >= listObjects.Length) return;
-
-        listObjects[index].SetActive(false);
+        Desactive(index);
     }
 
     public void Toggle(int index)
@@ -61,10 +55,7 @@ public class ObjectManager : MonoBehaviour
     public void Toggle(Enum value)
     {
         int index = Convert.ToInt32(value);
-        if (index < 0) return;
-        if (index >= listObjects.Length) return;
-
-        listObjects[index].SetActive(!listObjects[index].activeSelf);
+        Toggle(index);
     }
 
 
@@ -82,9 +73,7 @@ public class ObjectManager : MonoBehaviour
         get
         {
             int index = Convert.ToInt32(valor);
-            if (index < 0 || index >= listObjects.Length) return null;
-            return listObjects[index];
-
+            return this[index];
         }
     }
 
