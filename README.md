@@ -121,7 +121,7 @@ Para cada paso puedes configurar:
 El **Tutorial controller** necesita la refernecia del  `Lenguague Manager ` y del  `Objet Manager `
 
   <img src="./Assets/img/Tutorial controller prefab.jpg" alt="step setting" width="1000%">
-  
+
 ### Métodos de Tutorial Controller
 
 | Método                            | Descripción                                      |
@@ -150,6 +150,15 @@ puedes llamar a todos los pasos del tutorial controller desde un step, pero adma
 | `Desactive(int index)`         | Desactiva un actor por su **Indice**.             | 
 | `GetComponentFrom<T>(Enum value)` | Obtiene un componente de un actor.              | 
 | `this[Enum valor]`               | Accede directamente al **GameObject**.          | 
+
+
+---
+
+## 📦 Repositorio
+
+En el repositorio encontraras una escna ejemplo del protecto **Car Controller With VR**  aplicando el **Tutorial Controller**.
+
+Ya estan todas las dependencias inculuidas y un prefab de TutorialController 
 
 ---
 
