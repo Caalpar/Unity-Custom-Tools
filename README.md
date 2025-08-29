@@ -118,15 +118,15 @@ Para cada paso puedes configurar:
 
 ## 🤖 Métodos Clave de `ActionStep`
 
-| Método                            | Descripción                                      | Ejemplo de uso |
-| --------------------------------- | ----------------------------------------------- | --------------- |
-| `NextStep()`                      | Avanza al siguiente paso.                       | `OnButtonClick.AddListener(NextStep);` |
-| `NextStepWithDelay(int seconds)`  | Avanza tras X segundos.                         | `StartCoroutine(WaitAndProceed(5));` |
-| `RepeatAudio(float seconds)`      | Repite el audio cada X segundos.                | `RepeatAudio(10f);` |
-| `Active(Enum value)`             | Activa un actor por su **Enum**.                | `Active(ActorsEnum.PlayerButton);` |
-| `Desactive(Enum value)`         | Desactiva un actor por su **Enum**.             | `Desactive(ActorsEnum.EnemyUI);` |
-| `GetComponentFrom<T>(Enum value)` | Obtiene un componente de un actor.              | `Button myButton = GetComponentFrom<Button>(ActorsEnum.Button_Play);` |
-| `this[Enum valor]`               | Accede directamente al **GameObject**.          | `GameObject player = this[ActorsEnum.Player];` |
+| Método                            | Descripción                                      |
+| --------------------------------- | ----------------------------------------------- | 
+| `NextStep()`                      | Avanza al siguiente paso.                       |
+| `NextStepWithDelay(int seconds)`  | Avanza tras X segundos.                         | 
+| `RepeatAudio(float seconds)`      | Repite el audio cada X segundos.                | 
+| `Active(Enum value)`             | Activa un actor por su **Enum**.                | 
+| `Desactive(Enum value)`         | Desactiva un actor por su **Enum**.             | 
+| `GetComponentFrom<T>(Enum value)` | Obtiene un componente de un actor.              | 
+| `this[Enum valor]`               | Accede directamente al **GameObject**.          | 
 
 ---
 
