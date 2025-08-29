@@ -118,9 +118,12 @@ Para cada paso puedes configurar:
 
 ## 🤖 Tutorial Controlle
 
-El **Tutorial controller** necesita la refernecia del  `Lenguague Manager ` y del  `Objet Manager `
+El **Tutorial controller** necesita la refernecia del `Objet Manager` y el **Tutorial** la referencia del **Languague Manager**
 
   <img src="./Assets/img/Tutorial controller prefab.jpg" alt="step setting" width="1000%">
+
+
+  <img src="./Assets/img/Languague Manager Ref.jpg" alt="step setting" width="1000%">
 
 ### Métodos de Tutorial Controller
 
