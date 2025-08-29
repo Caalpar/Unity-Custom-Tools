@@ -7,17 +7,18 @@ public class FadeEffect : MonoBehaviour
     public CanvasGroup targetCanvasGroup;
     public float fadeInOutTime = 3;
     public float duration = 1.0f;
-
+    Coroutine feadeInOutRutine = null;
 
 
     private void Start()
     {
-      //  FadeInOut(null);
+      
     }
 
     public void FadeInOut(Action action)
     {
-        StartCoroutine(FadeInOutRutine(action));
+        if (feadeInOutRutine != null)
+            feadeInOutRutine = StartCoroutine(FadeInOutRutine(action));
     }
 
     public IEnumerator FadeInOutRutine(Action action)
@@ -28,6 +29,7 @@ public class FadeEffect : MonoBehaviour
             action.Invoke();
         yield return new WaitForSeconds(fadeInOutTime/2);
         StartCoroutine(FadeRutine(false));
+        feadeInOutRutine = null;
     }
 
     public IEnumerator FadeRutine(bool fadeIn)
