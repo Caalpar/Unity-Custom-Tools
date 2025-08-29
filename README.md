@@ -1,4 +1,4 @@
-![Tutorial Controller Banner](./Assets/img/banner.jpg)
+![Tutorial Controller Banner](./Assets/img/Banner.jpg)
 
 # 🎮 Tutorial Controller para Unity
 
