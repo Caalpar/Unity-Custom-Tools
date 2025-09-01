@@ -1,20 +1,22 @@
 using UnityEngine;
 using System.Linq;
 
-public class TurnOn_Step_2 : ActionStep
+public class Decelerator_Step_6 : ActionStep
 {
     CarController carController;
+    float lastTorque = 0;
 
     private void Start()
     {
         carController = GetComponentFrom<CarController>(ITEM_TUTORIALCONTROLLER.SimpleCarController);
+        lastTorque = carController.torque;
     }
+
 
     private void Update()
     {
-        if (carController.onOffController.IsOn)
+        if (lastTorque > carController.torque)
             NextStep();
-        
     }
     public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial, StepState stepState)
     {

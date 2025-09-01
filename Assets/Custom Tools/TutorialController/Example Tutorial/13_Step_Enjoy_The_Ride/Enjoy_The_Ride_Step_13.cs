@@ -1,20 +1,16 @@
 using UnityEngine;
 using System.Linq;
 
-public class TurnOn_Step_2 : ActionStep
+public class Enjoy_The_Ride_Step_13 : ActionStep
 {
-    CarController carController;
-
     private void Start()
     {
-        carController = GetComponentFrom<CarController>(ITEM_TUTORIALCONTROLLER.SimpleCarController);
+
     }
 
     private void Update()
     {
-        if (carController.onOffController.IsOn)
-            NextStep();
-        
+
     }
     public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial, StepState stepState)
     {

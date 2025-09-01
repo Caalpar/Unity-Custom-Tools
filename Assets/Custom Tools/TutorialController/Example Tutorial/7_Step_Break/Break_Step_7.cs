@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Linq;
 
-public class TurnOn_Step_2 : ActionStep
+public class Break_Step_7 : ActionStep
 {
     CarController carController;
 
@@ -10,11 +10,11 @@ public class TurnOn_Step_2 : ActionStep
         carController = GetComponentFrom<CarController>(ITEM_TUTORIALCONTROLLER.SimpleCarController);
     }
 
+
     private void Update()
     {
-        if (carController.onOffController.IsOn)
+        if (carController.mBreak > 0)
             NextStep();
-        
     }
     public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial, StepState stepState)
     {
