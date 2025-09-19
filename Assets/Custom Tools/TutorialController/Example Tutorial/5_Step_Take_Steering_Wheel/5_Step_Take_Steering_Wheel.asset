@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e584679e23f3b044aaf16df5af855f0, type: 3}
+  m_Name: 5_Step_Take_Steering_Wheel
+  m_EditorClassIdentifier: 
+  audioIndex: 9
+  audioEnumTypeName: 
+  audioEnumValueName: N_10SpanishTakeSteeringWheel
+  selectedObjectEnumName: ITEM_TUTORIALCONTROLLER
+  selectedAudioEnumIndex: 0
+  selectedObjectEnumIndex: 1
+  audio: 1
+  prefabStep: {fileID: 6438622666678274851, guid: 7db88223d39fc1e4e9c3bf129459e9de, type: 3}
+  stepDuration: 0
+  completionCondition: 1
+  actors:
+  - enumTypeName: ITEM_TUTORIALCONTROLLER
+    enumIndexItem: 10
+    objectID: GhostLeftHand
+    alwaysActive: 0
+    targetPosition: {x: 0, y: 0, z: 0}
+    targetRotation: {x: 0, y: 0, z: 0, w: 0}
+  - enumTypeName: ITEM_TUTORIALCONTROLLER
+    enumIndexItem: 11
+    objectID: GhostRightHand
+    alwaysActive: 0
+    targetPosition: {x: 0, y: 0, z: 0}
+    targetRotation: {x: 0, y: 0, z: 0, w: 0}

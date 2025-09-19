@@ -66,10 +66,7 @@ public abstract class ActionStep : MonoBehaviour
 
     public void NextStepWithDelay(int sec)
     {
-        if (completed) return;
-
-        completed = true;
-        tutorialController.NextStepWithDelay(sec);
+        Invoke("NextStep", sec);
     }
 
     public void NextStep()
@@ -85,7 +82,7 @@ public abstract class ActionStep : MonoBehaviour
 
     public virtual void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial, StepState stepState)
     {
-       
+        Debug.Log("aca");
 
         for (int i = 0; i < actorsInTutorial.Length; i++)
         {

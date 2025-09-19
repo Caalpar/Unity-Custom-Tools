@@ -1,0 +1,19 @@
+using UnityEngine;
+using System.Linq;
+
+public class Enjoy_The_Ride_Step_13 : ActionStep
+{
+    private void Start()
+    {
+
+    }
+
+    private void Update()
+    {
+
+    }
+    public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial, StepState stepState)
+    {
+        base.StartStep(actorsInStep, actorsInTutorial, stepState);
+    }
+}
