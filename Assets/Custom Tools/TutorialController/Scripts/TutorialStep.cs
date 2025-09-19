@@ -26,7 +26,11 @@ public class TutorialStep : ScriptableObject
     [HideInInspector]
     public int selectedObjectEnumIndex;
 
+    [Header("Audio")]
     public bool audio= true;
+    public bool repeatAudio= false;
+    public float repeatAudioTime = 3f;
+    [Space(10)]
     public GameObject prefabStep;
     public float stepDuration;
     public CompletionCondition completionCondition;

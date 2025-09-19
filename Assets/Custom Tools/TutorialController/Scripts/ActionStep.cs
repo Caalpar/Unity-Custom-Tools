@@ -22,6 +22,13 @@ public abstract class ActionStep : MonoBehaviour
     private void Start()
     {
         completed = false;
+
+    }
+
+    public void RepeatAudio(float seconds)
+    {
+        if (tutorialController == null) return;
+        tutorialController.RepeatAudio(seconds);
     }
 
     public T GetComponentFrom<T>(Enum value)
@@ -59,7 +66,10 @@ public abstract class ActionStep : MonoBehaviour
 
     public void NextStepWithDelay(int sec)
     {
-        Invoke("NextStep", sec);
+        if (completed) return;
+
+        completed = true;
+        tutorialController.NextStepWithDelay(sec);
     }
 
     public void NextStep()
@@ -75,6 +85,8 @@ public abstract class ActionStep : MonoBehaviour
 
     public virtual void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial, StepState stepState)
     {
+       
+
         for (int i = 0; i < actorsInTutorial.Length; i++)
         {
             bool foundActor = false;

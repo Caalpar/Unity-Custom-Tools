@@ -49,9 +49,25 @@ public class TutorialStepEditor : Editor
       .ToArray();
         string[] objectClassNames = objectScriptPaths.Select(path => Path.GetFileNameWithoutExtension(path)).ToArray();
         objectEnums = AppDomain.CurrentDomain.GetAssemblies()
-          .SelectMany(assembly => assembly.GetTypes())
-          .Where(type => type.IsEnum && type.IsPublic && objectClassNames.Contains(type.Name))
-          .ToArray();
+            .SelectMany(assembly =>
+            {
+                try
+                {
+                    return assembly.GetTypes();
+                }
+                catch (ReflectionTypeLoadException e)
+                {
+            // Devuelve solo los tipos que pudieron cargarse
+            return e.Types.Where(t => t != null);
+                }
+                catch
+                {
+            // Si hay otro error, ignoramos este assembly
+            return new Type[0];
+                }
+            })
+            .Where(type => type.IsEnum && type.IsPublic && objectClassNames.Contains(type.Name))
+            .ToArray();
 
         // ➡️ Paso 3: Buscamos y almacenamos los enums de la segunda carpeta
         string[] audioScriptPaths = AssetDatabase.FindAssets("t:TextAsset", new string[] { audioFolderPath })
@@ -60,9 +76,25 @@ public class TutorialStepEditor : Editor
       .ToArray();
         string[] audioClassNames = audioScriptPaths.Select(path => Path.GetFileNameWithoutExtension(path)).ToArray();
         audioEnums = AppDomain.CurrentDomain.GetAssemblies()
-          .SelectMany(assembly => assembly.GetTypes())
-          .Where(type => type.IsEnum && type.IsPublic && audioClassNames.Contains(type.Name))
-          .ToArray();
+            .SelectMany(assembly =>
+            {
+                try
+                {
+                    return assembly.GetTypes();
+                }
+                catch (ReflectionTypeLoadException e)
+                {
+            // Devuelve solo los tipos que pudieron cargarse
+            return e.Types.Where(t => t != null);
+                }
+                catch
+                {
+            // Si hay otro error, ignoramos este assembly
+            return new Type[0];
+                }
+            })
+            .Where(type => type.IsEnum && type.IsPublic && audioClassNames.Contains(type.Name))
+            .ToArray();
 
         // ➡️ Paso 4: Inicializamos los valores por defecto para cada selector
         if (objectEnums.Length > 0)
@@ -112,11 +144,30 @@ public class TutorialStepEditor : Editor
         selectedObjectEnumName = tutorialStep.selectedObjectEnumName;
 
 
+      
+
         if (audioEnumTypeNameProp.stringValue != null)
+        {
             selectedAudioEnumName = audioEnumTypeNameProp.stringValue;
+     
+
+            if (!string.IsNullOrEmpty(selectedAudioEnumName)){
+                foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    selectedAudioEnumType = assembly.GetType(selectedAudioEnumName);
+                    if (selectedAudioEnumType != null)
+                    {
+                        break; // Encontrado, salimos del bucle
+                    }
+                }
+            }
+
+           // Debug.Log(selectedAudioEnumType);
+
+        }
 
         // ➡️ Paso 5: Dibujamos el primer selector para los enums de "EnumsObjectManager"
-        if (objectEnums.Length > 0)
+        if (objectEnums != null && objectEnums.Length > 0)
         {
             string[] enumNames = objectEnums.Select(t => t.Name).ToArray();
             int newIndex = EditorGUILayout.Popup("Select Object Enum", selectedObjectEnumIndex, enumNames);
@@ -142,7 +193,7 @@ public class TutorialStepEditor : Editor
         }
 
         // ➡️ Dibujamos el selector de audio (ya maneja tanto el tipo de enum como el valor)
-        if (audioEnums.Length > 0)
+        if (objectEnums != null && audioEnums.Length > 0)
         {
             string[] audioEnumNames = audioEnums.Select(t => t.Name).ToArray();
             int newAudioIndex = EditorGUILayout.Popup("Select Audio Enum", selectedAudioEnumIndex, audioEnumNames);
@@ -152,15 +203,20 @@ public class TutorialStepEditor : Editor
                 selectedAudioEnumIndex = newAudioIndex;
                 selectedAudioEnumName = audioEnumNames[newAudioIndex];
                 selectedAudioEnumType = audioEnums[newAudioIndex];
+                Debug.Log("cargando selectedAudioEnumType:" +selectedAudioEnumType);
+
                 selectedAudioEnumIndexProp.intValue = selectedAudioEnumIndex;
 
                 // Reinicia el índice del valor del audio cuando cambia el tipo de enum
                 selectedAudioValueIndex = 0;
             }
 
+          
+
             // ➡️ Agrega el selector para los valores del enum de audio
             if (selectedAudioEnumType != null)
             {
+             
                 // Obtén los nombres de los valores del enum de audio
                 string[] audioValues = Enum.GetNames(selectedAudioEnumType);
 

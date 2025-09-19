@@ -18,7 +18,10 @@ public class TutorialController : MonoBehaviour
     private bool isPaused;
     private GameObject prefabStep;
     private AudioSource audioSource;
-    private List<Actor> actors; 
+    private AudioClip currentAudioClip;
+    private List<Actor> actors;
+
+    private Coroutine audioRepeatRoutine;
     public bool isRunStep {  get; private set; }
     public int currentStep { get { return currentStepIndex; } }
     public bool isAudioPlay { get {  return audioSource.isPlaying; } }
@@ -58,6 +61,26 @@ public class TutorialController : MonoBehaviour
         ShowStep(currentStepIndex);
     }
 
+    public void RepeatAudio(float seconds)
+    {
+        if(audioRepeatRoutine == null)
+        audioRepeatRoutine = StartCoroutine(RepeatAudioRutine(seconds));
+    }
+
+    IEnumerator RepeatAudioRutine(float seconds)
+    {
+        while (true)
+        {
+            if (languageManager != null && audioSource != null && currentAudioClip != null && !audioSource.isPlaying)
+            {
+                yield return new WaitForSeconds(seconds);
+                if(!audioSource.isPlaying)
+                    audioSource.PlayOneShot(currentAudioClip);
+            }
+            yield return null;
+        }
+    }
+
     void ShowStep(int index)
     {
 
@@ -77,18 +100,22 @@ public class TutorialController : MonoBehaviour
             prefabStep = Instantiate(step.prefabStep, transform.position, Quaternion.identity);
             ActionStep action = prefabStep.GetComponent<ActionStep>();
             action.tutorialController = this;
-            action.StartStep(step.actors, actors.ToArray(),stepState);   
+            action.StartStep(step.actors, actors.ToArray(),stepState);
+            if (step.repeatAudio)
+            {
+                action.RepeatAudio(step.repeatAudioTime);
+            }
         }
 
         if (step.audio)
         {
-            if(languageManager != null)
+            if (languageManager != null)
             {
-                AudioClip clip = languageManager.GetAudio(step.audioIndex);
+                currentAudioClip = languageManager.GetAudio(step.audioIndex);
 
-                if (clip != null)
+                if (currentAudioClip != null)
                 {
-                    audioSource.PlayOneShot(clip);
+                    audioSource.PlayOneShot(currentAudioClip);
                 }
             }
    
@@ -133,7 +160,30 @@ public class TutorialController : MonoBehaviour
 
     public void PauseTutorial()
     {
+        Debug.Log("Tutorial in pause");
+
+        audioSource.Stop();
+        if (prefabStep != null)
+        {
+            isRunStep = false;
+            Destroy(prefabStep);
+            if (audioRepeatRoutine != null)
+            {
+                StopCoroutine(audioRepeatRoutine);
+                audioRepeatRoutine = null;
+            }
+
+        }
+        DisableAllActors();
         isPaused = true;
+    }
+
+    public void DisableAllActors()
+    {
+        for (int i = 0; i < actors.Count; i++)
+        {
+            objectManager.Desactive(actors[i].enumIndexItem);
+        }
     }
 
     public void ResumeTutorial(int setStep = 0)
@@ -143,6 +193,7 @@ public class TutorialController : MonoBehaviour
         if (currentStepIndex < 0) return;
         if (currentStepIndex >= currentTutorial.steps.Length) return;
 
+        Debug.Log("Resume Tutorial!");
         isPaused = false;
         audioSource.Stop();
         isStepCompleted = true;
@@ -152,28 +203,34 @@ public class TutorialController : MonoBehaviour
 
     void NextStep()
     {
-
         if (!isStepCompleted || audioSource.isPlaying)
         {
             Invoke("NextStep", 1);
         }
         else
         {
+
             if (prefabStep != null)
             {
                 isRunStep = false;
                 Destroy(prefabStep);
+                if (audioRepeatRoutine != null)
+                {
+                    StopCoroutine(audioRepeatRoutine);
+                    audioRepeatRoutine = null;
+                }
+               
             }
 
             currentStepIndex++;
             if (currentStepIndex < currentTutorial.steps.Length)
             {
-
                 ShowStep(currentStepIndex);
                 isStepCompleted = false;
             }
             else
             {
+
                 Debug.Log("Tutorial completed!");
                 currentStepIndex = 0;
                 isStepCompleted = true;
@@ -188,8 +245,10 @@ public class TutorialController : MonoBehaviour
         if (indexStep < 0) return;
         if (indexStep >= currentTutorial.steps.Length) return;
 
+        Debug.Log("Select Step!");
         currentStepIndex = indexStep-1;
         audioSource.Stop();
+        isPaused = false;
         isStepCompleted = true;
         stepState = StepState.SELECT;
         NextStep();
@@ -201,7 +260,11 @@ public class TutorialController : MonoBehaviour
         if (currentStepIndex > currentTutorial.steps.Length) currentStepIndex = currentTutorial.steps.Length;
 
         currentStepIndex--;
+        Debug.Log("Restart Step!");
+
         audioSource.Stop();
+        isPaused = false;
+        isStepCompleted = true;
         stepState = StepState.REPEAT;
         NextStep();
     }
