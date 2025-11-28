@@ -13,7 +13,7 @@ public class Down_Lever_Step_8 : ActionStep
 
     private void Update()
     {
-        if (carController.transmisión == -1)
+        if (carController.transmision == -1)
             NextStep();
     }
     public override void StartStep(Actor[] actorsInStep, Actor[] actorsInTutorial, StepState stepState)

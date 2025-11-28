@@ -100,6 +100,7 @@ public class TutorialController : MonoBehaviour
             prefabStep = Instantiate(step.prefabStep, transform.position, Quaternion.identity);
             ActionStep action = prefabStep.GetComponent<ActionStep>();
             action.tutorialController = this;
+            action.ObjectsManager = objectManager;
             action.StartStep(step.actors, actors.ToArray(),stepState);
             if (step.repeatAudio)
             {

@@ -26,7 +26,7 @@ public class CarController : MonoBehaviour
     [Header("Motor")]
     [Range(-1, 1)] public float torque;
     public float maxTorque;
-    [Range(-1, 1)] public int transmisión;
+    [Range(-1, 1)] public int transmision;
     public OnOffController onOffController;
     [SerializeField] AudioSource audioEngine;
     [SerializeField] float minPitch = 0.05f;
@@ -56,7 +56,7 @@ public class CarController : MonoBehaviour
     private void Update()
     {
         if(debug)
-            UpdateAxel(torque, transmisión, angle, mBreak);
+            UpdateAxel(torque, transmision, angle, mBreak);
     }
 
     public void UpdateAxel(float motorTorque, int march, float steeringAngle, float motorBreak)
@@ -65,7 +65,7 @@ public class CarController : MonoBehaviour
 
         if (!debug)
         {
-            transmisión = march;
+            transmision = march;
             mBreak = motorBreak;
             torque = motorTorque;
         }
@@ -127,7 +127,7 @@ public class CarController : MonoBehaviour
     }
 
 
-    public float CurrentVelocityKPH() { return (float)Math.Round(rbForkLift.velocity.magnitude * 3.6f, 0); }
+    public float CurrentVelocityKPH() { return (float)Math.Round(rbForkLift.linearVelocity.magnitude * 3.6f, 0); }
 
     private void UpdateVisualAxel(WheelCollider collider, Transform visualWheel)
     {
@@ -141,7 +141,7 @@ public class CarController : MonoBehaviour
 
     public float MapPercentageToRange(float percentage, float minValue, float maxValue)
     {
-        // Clampeamos el porcentaje para asegurarnos de que esté entre 0 y 1
+        // Clampeamos el porcentaje para asegurarnos de que estï¿½ entre 0 y 1
         percentage = Mathf.Clamp(percentage, 0f, 1f);
 
         // Convertimos el porcentaje al rango deseado

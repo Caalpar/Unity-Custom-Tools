@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 public abstract class ActionStep : MonoBehaviour
@@ -12,10 +13,12 @@ public abstract class ActionStep : MonoBehaviour
     protected bool completed;
 
     public bool isAudioPlaying { get { return tutorialController.isAudioPlay; } }
+
+    public ObjectManager ObjectsManager { set { objectsManager = value; } get { return objectsManager; } }
     // Start is called before the first frame update
     void Awake()
     {
-        objectsManager = GameObject.FindWithTag("ObjectManager").GetComponent<ObjectManager>();
+      //  objectsManager = GameObject.FindWithTag("ObjectManager").GetComponent<ObjectManager>();
        // tutorialController = objectsManager.tutorialController;
     }
 
@@ -47,20 +50,42 @@ public abstract class ActionStep : MonoBehaviour
 
     public void Active(Enum value)
     {
+        if(objectsManager == null)
+        {
+            Debug.LogError("Objects Manager is null");
+            return;
+        }
+        
         objectsManager.Active(value);
     }
 
     public void Active(int index)
     {
+        if (objectsManager == null)
+        {
+            Debug.LogError("Objects Manager is null");
+            return;
+        }
+
         objectsManager.Active(index);
     }
 
     public void Desactive(Enum value)
     {
+        if (objectsManager == null)
+        {
+            Debug.LogError("Objects Manager is null");
+            return;
+        }
         objectsManager.Desactive(value);
     }
     public void Desactive(int index)
     {
+        if (objectsManager == null)
+        {
+            Debug.LogError("Objects Manager is null");
+            return;
+        }
         objectsManager.Desactive(index);
     }
 
@@ -71,6 +96,8 @@ public abstract class ActionStep : MonoBehaviour
 
     public void NextStep()
     {
+
+
         if (completed) return;
 
         if (tutorialController == null) throw new Exception("Tutorial Controller is null");

@@ -12,7 +12,7 @@ public class Up_Lever_Step_3 : ActionStep
 
     private void Update()
     {
-        if(carController.transmisión == 1)
+        if(carController.transmision == 1)
         {
             NextStep();
         }
